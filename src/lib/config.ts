@@ -1,3 +1,10 @@
+export enum Route {
+    Home = '/',
+    Write = '/write',
+    About = '/about',
+    Contact = '/contact'
+}
+
 export interface Config {
     title: string;
     description: string;

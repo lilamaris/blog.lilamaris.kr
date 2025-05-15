@@ -81,8 +81,8 @@
     --font-noto: 'Noto Sans KR', sans-serif;
     --font-jetbrains: 'JetBrains Mono', monospace;
 
-    --text-fsm: clamp(0.75rem, 2vw, 0.8rem);
-    --text-fmd: clamp(1rem, 0.4325rem + 1.75vw, 1.125rem);
+    --text-fsm: clamp(0.7rem, 0.35rem + 1.5vw, 0.75rem);
+    --text-fmd: clamp(0.9rem, 0.45rem + 1.75vw, 1rem);
     --text-flg: clamp(1.125rem, 1.125rem + 2vw, 2.25rem);
     --text-fxl: clamp(1.25rem, 1.25rem + 2.25vw, 2.5rem);
 }

@@ -5,7 +5,7 @@
 </script>
 
 {#key url}
-    <div in:blur={{ duration: 150, delay: 100 }}>
+    <div in:blur={{ duration: 150 }}>
         {@render children()}
     </div>
 {/key}

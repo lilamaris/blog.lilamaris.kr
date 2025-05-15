@@ -29,7 +29,7 @@
 <div class="flex min-h-screen flex-col items-center overflow-hidden">
     <Header isScrolled={$isScrolled} />
     <PageTransition url={data.url}>
-        <main class="flex flex-1 flex-col">
+        <main class="mt-24 flex flex-1 flex-col">
             {@render children()}
         </main>
     </PageTransition>

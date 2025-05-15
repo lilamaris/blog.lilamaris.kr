@@ -56,14 +56,14 @@
 </script>
 
 {#if $toast}
-    <div class="toast toast-top toast-center">
+    <div class="toast toast-top toast-center z-10">
         <div class="alert alert-error">
             <span>{$toast}</span>
         </div>
     </div>
 {/if}
 
-<div class="join mx-4 mt-24 flex flex-1">
+<div class="join mb-4 flex min-w-[calc(var(--container-2xl)_*_2)] flex-1">
     <form
         method="POST"
         action="?/saveArticle"

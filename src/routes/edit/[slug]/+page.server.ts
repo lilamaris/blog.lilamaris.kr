@@ -26,6 +26,7 @@ export const load: PageServerLoad = async ({ params }) => {
 export const actions: Actions = {
     saveArticle: async ({ request }) => {
         const formData = await request.formData();
+        const id = Number(formData.get('id'));
         const title = String(formData.get('title'));
         const description = String(formData.get('description'));
         const slug = String(formData.get('slug'));
@@ -49,7 +50,7 @@ export const actions: Actions = {
             return fail(400, errorData);
         }
 
-        const existing = await prisma.post.findFirst({ where: { slug } });
+        const existing = await prisma.post.findFirst({ where: { id } });
 
         if (!existing) {
             // 새 글 생성

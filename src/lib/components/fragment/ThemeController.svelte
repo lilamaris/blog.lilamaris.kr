@@ -1,7 +1,5 @@
 <script lang="ts">
-    import { Moon, Sun } from '@lucide/svelte';
-    import { onMount } from 'svelte';
-    import { writable } from 'svelte/store';
+    import { onMount, type Snippet } from 'svelte';
 
     let dark: boolean;
 
@@ -33,6 +31,11 @@
             localStorage.removeItem('theme');
         }
     }
+
+    interface Props {
+        controller: Snippet<[() => void]>;
+    }
+    const { controller }: Props = $props();
 </script>
 
 <svelte:head>
@@ -49,9 +52,4 @@
     </script>
 </svelte:head>
 
-<label class="swap swap-rotate">
-    <input type="checkbox" class="theme-controller" onclick={toggle} />
-
-    <Sun class="swap-on" />
-    <Moon class="swap-off" />
-</label>
+{@render controller(toggle)}

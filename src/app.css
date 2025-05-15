@@ -2,6 +2,9 @@
 @plugin "daisyui";
 @plugin "@tailwindcss/typography";
 
+@import '@fontsource-variable/noto-sans-kr';
+@import '@fontsource-variable/jetbrains-mono';
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @plugin "daisyui/theme" {
@@ -75,21 +78,28 @@
 }
 
 @theme {
-    --text-fsm: clamp(0.75rem, 2vw, 1rem);
-    --text-fmd: clamp(1rem, 4vw, 1.5rem);
-    --text-flg: clamp(1.5rem, 6vw, 2.5rem);
-    --text-fxl: clamp(2rem, 9vw, 3.5rem);
+    --font-noto: 'Noto Sans KR', sans-serif;
+    --font-jetbrains: 'JetBrains Mono', monospace;
+
+    --text-fsm: clamp(0.75rem, 2vw, 0.8rem);
+    --text-fmd: clamp(1rem, 0.4325rem + 1.75vw, 1.125rem);
+    --text-flg: clamp(1.125rem, 1.125rem + 2vw, 2.25rem);
+    --text-fxl: clamp(1.25rem, 1.25rem + 2.25vw, 2.5rem);
 }
 
 @layer base {
     html,
     body {
-        @apply bg-base-200 m-0 min-h-screen p-0 transition-colors;
+        @apply font-noto bg-base-200 text-fmd m-0 min-h-screen p-0 transition-colors;
     }
 }
 
-/* @utility prose {
+@utility prose {
     & * {
-        @apply text-pink-800;
+        @apply text-fmd;
     }
-} */
+
+    pre {
+        @apply font-jetbrains whitespace-pre-wrap;
+    }
+}

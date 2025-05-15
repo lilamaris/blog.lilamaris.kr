@@ -30,6 +30,23 @@
             window.removeEventListener('keydown', handleKeyDown);
         }
     });
+
+    /**
+     * 현재 경로에서 한 단계 상위 경로로 이동합니다.
+     * 최상위('/')에서는 홈으로 이동합니다.
+     */
+    const goToParentRoute = (): void => {
+        if (!browser) return;
+        const path = window.location.pathname;
+        const segments = path.split('/').filter(Boolean);
+        if (segments.length === 0) {
+            goto('/');
+            return;
+        }
+        segments.pop();
+        const parent = '/' + segments.join('/');
+        goto(parent === '' ? '/' : parent);
+    };
 </script>
 
 {#snippet themeController(onClick: () => void)}
@@ -49,7 +66,7 @@
     <a class="btn btn-square tooltip tooltip-base-100 tooltip-bottom" data-tip="홈으로" href="/">
         <Home class="h-4" />
     </a>
-    <button class="tooltip btn btn-square tooltip-bottom" data-tip="뒤로 가기">
+    <button class="tooltip btn btn-square tooltip-bottom" data-tip="뒤로 가기" onclick={goToParentRoute}>
         <ArrowLeft class="h-4" />
     </button>
     <label class="input hidden focus-within:outline-none sm:flex">

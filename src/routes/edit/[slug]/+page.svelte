@@ -1,11 +1,10 @@
 <script lang="ts">
     import { markdownToHtml } from '$lib/markdown';
-    import { page } from '$app/state';
     import { applyAction, enhance } from '$app/forms';
     import { onMount } from 'svelte';
     import { articleStore } from '$lib/stores/article';
     import { writable } from 'svelte/store';
-    import { BookText } from '@lucide/svelte';
+    import { BookText, Save } from '@lucide/svelte';
     import type { SubmitFunction } from '@sveltejs/kit';
     import CodeEditor from '$lib/components/fragment/CodeEditor.svelte';
     import { goto } from '$app/navigation';
@@ -46,10 +45,9 @@
     };
 
     onMount(() => {
-        if (data.article) {
+        articleStore.resetArticle();
+        if (data.article && data.article.id !== $article.id) {
             articleStore.setArticle(data.article);
-        } else {
-            articleStore.resetArticle();
         }
 
         const unsub = articleStore.trackingChange();
@@ -57,8 +55,36 @@
     });
 </script>
 
-<div class="join m-4 flex flex-1">
-    <form method="POST" class="join-item bg-base-100 flex flex-1 flex-col p-4">
+{#if $toast}
+    <div class="toast toast-top toast-center">
+        <div class="alert alert-error">
+            <span>{$toast}</span>
+        </div>
+    </div>
+{/if}
+
+<div class="join mx-4 mt-24 flex flex-1">
+    <form
+        method="POST"
+        action="?/saveArticle"
+        use:enhance={saveArticle}
+        class="join-item bg-base-100 flex flex-1 flex-col gap-2 p-4"
+    >
+        <div
+            class="rounded-bl-box bg-base-100/50 fixed top-16 right-0 z-10 flex justify-end gap-1 p-4 pt-2 shadow-md backdrop-blur-md"
+        >
+            <button
+                aria-busy={$isLoading}
+                formaction="?/saveArticle"
+                type="submit"
+                class="btn btn-success btn-square"
+            >
+                {#if $isLoading}<span class="loading loading-spinner loading-xs"></span>
+                {:else}
+                    <Save class="h-4 w-4" />
+                {/if}
+            </button>
+        </div>
         <div class="flex gap-2">
             <label class="input flex-1">
                 <BookText class="h-4 w-4" />
@@ -119,6 +145,7 @@
             {/each}
         </fieldset>
         <CodeEditor bind:value={$content} />
+        <input type="hidden" name="content" bind:value={$content} />
     </form>
     <div class="join-item bg-base-100 flex flex-1 flex-col p-4">
         <div class="prose rounded-field bg-base-200 flex-1 p-4">

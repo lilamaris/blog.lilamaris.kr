@@ -10,15 +10,17 @@ export const load: PageServerLoad = async ({ params }) => {
     if (!slug) return { article: null, categories };
 
     const article = await prisma.post.findFirst({
-        where: {
-            slug: slug
-        }
+        where: { slug },
+        include: { categories: true }
     });
 
-    return {
-        article,
-        categories
+    const categoryIds = article?.categories.map((category) => category.id);
+    const articleWithCategoryIds = {
+        ...article,
+        categories: categoryIds
     };
+
+    return { article: articleWithCategoryIds, categories };
 };
 
 export const actions: Actions = {
@@ -34,15 +36,10 @@ export const actions: Actions = {
             .map((id: FormDataEntryValue) => Number(id));
 
         const errors: Record<string, unknown> = {};
-
         if (!title) errors.title = 'required';
         if (!description) errors.description = 'required';
         if (!content) errors.content = 'required';
         if (categories.length === 0) errors.categories = 'required';
-
-        // slug 중복 검사
-        const existing = await prisma.post.findFirst({ where: { slug } });
-        if (existing) errors.slug = 'duplicated';
 
         if (Object.keys(errors).length > 0) {
             const errorData = {
@@ -52,22 +49,43 @@ export const actions: Actions = {
             return fail(400, errorData);
         }
 
-        await prisma.post.create({
-            data: {
-                title,
-                description,
-                slug,
-                content,
-                published: published ? true : false,
-                createdAt: new Date(),
-                updatedAt: new Date(),
-                authorId: 1,
-                categories: {
-                    connect: categories.map((id: number) => ({ id }))
-                }
-            },
-            include: { categories: true }
-        });
+        const existing = await prisma.post.findFirst({ where: { slug } });
+
+        if (!existing) {
+            // 새 글 생성
+            await prisma.post.create({
+                data: {
+                    title,
+                    description,
+                    slug,
+                    content,
+                    published: published ? true : false,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                    authorId: 1,
+                    categories: {
+                        connect: categories.map((id: number) => ({ id }))
+                    }
+                },
+                include: { categories: true }
+            });
+        } else {
+            // 기존 글 수정
+            await prisma.post.update({
+                where: { id: existing.id },
+                data: {
+                    title,
+                    description,
+                    content,
+                    published: published ? true : false,
+                    updatedAt: new Date(),
+                    categories: {
+                        set: categories.map((id: number) => ({ id }))
+                    }
+                },
+                include: { categories: true }
+            });
+        }
 
         redirect(303, '/');
     }

@@ -12,7 +12,7 @@
     </div>
     <div class="mb-4 flex flex-wrap gap-2">
         {#each post.categories as category}
-            <span class="badge badge-primary badge-outline">{category.name}</span>
+            <span class="badge shadow">{category.name}</span>
         {/each}
     </div>
     <div class="prose">{@html data.html}</div>

@@ -1,27 +1,39 @@
 <script lang="ts">
+    import { formatDate } from '$lib/utils';
+
     const { data } = $props();
     const articles = data.articles;
 </script>
 
-<div class="container mx-auto px-4 py-8">
-    <h1 class="mb-8 text-3xl font-bold">블로그 글 목록</h1>
-    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {#each articles as article}
-            <a
-                href="/{article.slug}"
-                class="card card-bordered bg-base-100 shadow transition hover:shadow-lg"
-            >
-                <figure>
-                    <img
-                        src="https://picsum.photos/400/250?random={article.id}"
-                        alt="썸네일"
-                        class="h-48 w-full object-cover"
-                        loading="lazy"
-                    />
-                </figure>
+<div class="mx-auto mt-24 flex max-w-2xl flex-col gap-2 px-2">
+    <ul class="list">
+        {#each articles as article, i}
+            <li>
+                <a
+                    class="list-row hover:bg-base-300 transition-colors duration-150"
+                    href="/{article.slug}"
+                >
+                    <div class="text-4xl font-thin tabular-nums opacity-30 select-none">
+                        {i + 1}
+                    </div>
+                    <div>
+                        <h1>{article.title}</h1>
+                        <small class="list-col-wrap text-fsm text-base-content/60">
+                            {article.description}
+                        </small>
+                        <div class="mt-1 flex flex-wrap gap-1">
+                            {#each article.categories as category}
+                                <span class="badge badge-sm shadow">{category.name}</span>
+                            {/each}
+                        </div>
+                    </div>
+                    <small class="text-base-content/40">
+                        {formatDate(article.createdAt)}
+                    </small>
+                </a>
+                <!-- <a href="/{article.slug}" class="card card-bordered">
                 <div class="card-body">
                     <h2 class="card-title truncate">{article.title}</h2>
-                    <p class="mb-2">{article.description}</p>
                     <div class="mb-2 flex flex-wrap gap-2">
                         {#each article.categories as category}
                             <span class="badge badge-primary">{category.name}</span>
@@ -32,7 +44,8 @@
                         <span>{String(article.createdAt).slice(0, 10)}</span>
                     </div>
                 </div>
-            </a>
+            </a> -->
+            </li>
         {/each}
-    </div>
+    </ul>
 </div>

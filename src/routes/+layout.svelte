@@ -1,10 +1,12 @@
 <script lang="ts">
     import '../app.css';
     import Header from '$lib/components/layout/Header.svelte';
-    let { children } = $props();
     import { isScrolled } from '$lib/stores/layout';
     import { onMount } from 'svelte';
     import { config } from '$lib/config';
+    import PageTransition from '$lib/components/layout/PageTransition.svelte';
+
+    const { data, children } = $props();
 
     onMount(() => {
         const scrollHandler = () => {
@@ -24,16 +26,11 @@
     <meta name="description" content={config.description} />
 </svelte:head>
 
-<div class="flex min-h-screen flex-col justify-stretch">
+<div class="flex min-h-screen flex-col items-center overflow-hidden">
     <Header isScrolled={$isScrolled} />
-    <main class="flex flex-1 flex-col" class:scrolledOffset={$isScrolled}>
-        {@render children()}
-    </main>
+    <PageTransition url={data.url}>
+        <main class="flex flex-1 flex-col">
+            {@render children()}
+        </main>
+    </PageTransition>
 </div>
-
-<style lang="postcss">
-    @reference "tailwindcss";
-    .scrolledOffset {
-        @apply pt-16;
-    }
-</style>

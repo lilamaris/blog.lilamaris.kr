@@ -1,11 +1,17 @@
 <script lang="ts">
     import { blur } from 'svelte/transition';
 
-    const { url, children } = $props();
+    interface Props {
+        class?: string;
+        url: string;
+        children: any;
+    }
+
+    const { class: className, url, children }: Props = $props();
 </script>
 
 {#key url}
-    <div in:blur={{ duration: 150 }}>
+    <div class={className} in:blur={{ duration: 150 }}>
         {@render children()}
     </div>
 {/key}

@@ -57,7 +57,7 @@
     </section>
 
     <section class="flex flex-col md:mt-12">
-        <div class="flex justify-between">
+        <div class="mb-1 flex justify-between">
             <h2 class="text-fmd">최근 게시글</h2>
             <a
                 href="/write"

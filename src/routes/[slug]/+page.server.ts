@@ -14,14 +14,17 @@ import type { UserModel } from '../../generated/prisma/models/User';
 export const load: PageServerLoad = async ({
     params
 }): Promise<{
-    post: (PostModel & { categories: CategoryModel[]; author: UserModel }) | null;
-    html: string | null;
+    post: PostModel & { categories: CategoryModel[]; author: UserModel };
+    html: string;
 }> => {
-    const post = await prisma.post.findFirst({
-        where: { slug: params.slug },
-        include: { categories: true, author: true }
-    });
-    if (!post) throw error(404, '포스트를 찾을 수 없습니다.');
-    const html = markdownToHtml(post.content);
-    return { post, html };
+    try {
+        const post = await prisma.post.findFirstOrThrow({
+            where: { slug: params.slug },
+            include: { categories: true, author: true }
+        });
+        const html = markdownToHtml(post.content);
+        return { post, html };
+    } catch {
+        error(404, '포스트를 찾을 수 없습니다.');
+    }
 };

@@ -18,13 +18,13 @@
         {index + 1}
     </div>
     <div>
-        <h1 class="text-fmd">{post.title}</h1>
-        <small class="list-col-wrap text-fsm text-base-content/60">
+        <h1 class="text-fmd line-clamp-2">{post.title}</h1>
+        <small class="list-col-wrap text-fsm text-base-content/60 line-clamp-2">
             {post.description}
         </small>
-        <CategoryList class="mt-1 flex gap-1" {categories} />
+        <CategoryList class="mt-1 flex gap-1 flex-wrap" {categories} />
     </div>
-    <small class="text-base-content/40">
+    <small class="text-base-content/40 truncate">
         {formatDate(post.createdAt)}
     </small>
 </a>

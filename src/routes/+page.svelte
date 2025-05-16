@@ -1,14 +1,30 @@
 <script lang="ts">
-    import type { PageData } from './$types';
-    import AvatarIntroduce from '$src/lib/components/layout/Home/AvatarIntroduce.svelte';
-    import RecentPostList from '$src/lib/components/layout/Home/RecentPostList.svelte';
+    import type { Post, Category } from '$generated/prisma';
+    import { ArrowUpRight } from '@lucide/svelte';
+    import { Route } from '$lib/config';
 
-    export let data: PageData;
+    import AvatarIntroduce from '$lib/components/layout/home/AvatarIntroduce.svelte';
+    import SummarizePost from '$lib/components/layout/SummarizePost.svelte';
+    import IterableItem from '$lib/components/fragment/IterableItem.svelte';
+
+    const { data } = $props();
     const { recentPosts } = data;
 </script>
 
-<div class="flex flex-col">
+{#snippet itemSnippet(post: Post & { categories: Category[] }, index: number)}
+    <SummarizePost {index} {post} categories={post.categories} />
+{/snippet}
+
+<div class="max-w-content mx-auto">
     <AvatarIntroduce />
     <div class="divider text-fsm text-base-content/60">최근 게시글</div>
-    <RecentPostList {recentPosts} />
+    <IterableItem parent="ul" class="list" items={recentPosts} {itemSnippet}>
+        <a
+            href={Route.Write}
+            class="hover:text-accent text-base-content/40 mb-2 flex flex-row-reverse gap-1 transition-colors"
+        >
+            <ArrowUpRight class="h-4 w-4" />
+            <small>더 보기</small>
+        </a>
+    </IterableItem>
 </div>

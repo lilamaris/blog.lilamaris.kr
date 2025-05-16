@@ -3,7 +3,7 @@
     import { browser } from '$app/environment';
     import { preloadData, goto } from '$app/navigation';
     import { Home, Search, ArrowLeft, Sun, Moon } from '@lucide/svelte';
-    import ThemeController from '$lib/components/fragment/ThemeController.svelte';
+    import ThemeController from '$lib/components/layout/ThemeController.svelte';
     import { onMount, onDestroy } from 'svelte';
     interface Props {
         isScrolled?: boolean;
@@ -66,7 +66,11 @@
     <a class="btn btn-square tooltip tooltip-base-100 tooltip-bottom" data-tip="홈으로" href="/">
         <Home class="h-4" />
     </a>
-    <button class="tooltip btn btn-square tooltip-bottom" data-tip="뒤로 가기" onclick={goToParentRoute}>
+    <button
+        class="tooltip btn btn-square tooltip-bottom"
+        data-tip="뒤로 가기"
+        onclick={goToParentRoute}
+    >
         <ArrowLeft class="h-4" />
     </button>
     <label class="input hidden focus-within:outline-none sm:flex">

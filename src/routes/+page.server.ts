@@ -1,5 +1,5 @@
 import prisma from '$lib/prisma';
-import type { Post, Category, User } from '$src/generated/prisma/client';
+import type { Post, Category, User } from '$generated/prisma';
 
 /**
  * 가장 최근 게시글 3개를 조회합니다.

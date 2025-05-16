@@ -1,6 +1,8 @@
 <script lang="ts">
     import { Github, type IconNode } from '@lucide/svelte';
-    import SNSButton from './SNSButton.svelte';
+    import IconButton from '$lib/components/layout/IconButton.svelte';
+    import IterableItem from '$lib/components/fragment/IterableItem.svelte';
+    import { config } from '$lib/config';
 
     const XIcon: IconNode = [
         [
@@ -15,17 +17,23 @@
 
     const SNS = [
         {
+            id: 0,
             name: 'GitHub',
             href: 'https://github.com/lilamaris',
             icon: Github
         },
         {
+            id: 1,
             name: 'X',
             href: 'https://x.com/_lilamaris',
             icon: XIcon
         }
     ];
 </script>
+
+{#snippet SNSButtonSnippet(sns: (typeof SNS)[number])}
+    <IconButton name={sns.name} href={sns.href} icon={sns.icon} />
+{/snippet}
 
 <div class="flex">
     <div class="avatar">
@@ -34,14 +42,13 @@
         </div>
     </div>
     <div class="flex-1 flex-col">
-        <h1 class="text-flg font-bold">Lilamaris</h1>
-        <p class="text-fsm">개발의 즐거움을 나눕니다.</p>
-        <ul class="mt-2 flex gap-1">
-            {#each SNS as sns}
-                <li>
-                    <SNSButton name={sns.name} href={sns.href} icon={sns.icon} />
-                </li>
-            {/each}
-        </ul>
+        <h1 class="text-flg font-bold">{config.nickname}</h1>
+        <p class="text-fsm">{config.description}</p>
+        <IterableItem
+            parent="ul"
+            class="mt-2 flex gap-1"
+            items={SNS}
+            itemSnippet={SNSButtonSnippet}
+        />
     </div>
 </div>

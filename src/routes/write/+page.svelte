@@ -1,11 +1,58 @@
 <script lang="ts">
-    import PostSummarize from '$lib/components/fragment/PostSummarize.svelte';
+    import { derived, writable } from 'svelte/store';
+    import type { Category, Post } from '$generated/prisma';
+
+    import IterableItem from '$lib/components/fragment/IterableItem.svelte';
+    import SummarizePost from '$lib/components/layout/SummarizePost.svelte';
 
     const { data } = $props();
-    const posts = data.posts;
+    const { categories, posts } = data;
+
+    const selectedCategory = writable<Category | null>(null);
+
+    const filteredPosts = derived([selectedCategory], ([$selectedCategory]) => {
+        if (!$selectedCategory) {
+            return posts;
+        }
+
+        const selId = $selectedCategory.id;
+        return posts.filter((post) => post.categories.values().some((c) => c.id === selId));
+    });
 </script>
 
-<div class="mx-auto flex max-w-2xl flex-col gap-2 px-2">
-    <h1 class="text-fmd">게시글</h1>
-    <PostSummarize {posts} />
+{#snippet postItemSnippet(post: Post & { categories: Category[] }, index: number)}
+    <li>
+        <SummarizePost {index} {post} categories={post.categories} />
+    </li>
+{/snippet}
+
+{#snippet categoryItemSnippet(category: (typeof categories)[number])}
+    <div class="tooltip tooltip-bottom" data-tip={`${category._count.posts}개의 글`}>
+        <input
+            class="btn btn-sm mr-1"
+            type="radio"
+            bind:group={$selectedCategory}
+            value={category}
+            aria-label={category.name}
+        />
+    </div>
+{/snippet}
+
+<div class="max-w-content mx-auto">
+    <div class="divider text-fsm text-base-content/60">게시글</div>
+    <IterableItem
+        parent="form"
+        class=" filter"
+        items={categories}
+        itemSnippet={categoryItemSnippet}
+    >
+        <input class="btn btn-square btn-sm" type="reset" value="×" />
+    </IterableItem>
+
+    <IterableItem
+        parent="ul"
+        class="list mt-4"
+        items={$filteredPosts}
+        itemSnippet={postItemSnippet}
+    />
 </div>

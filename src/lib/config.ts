@@ -7,10 +7,12 @@ export enum Route {
 
 export interface Config {
     title: string;
+    nickname: string;
     description: string;
 }
 
 export const config: Config = {
     title: 'Lilamaris',
-    description: 'Lilamaris is a platform for creating and sharing content.'
+    nickname: 'Lilamaris',
+    description: '개발의 즐거움을 나눕니다.'
 };

@@ -2,9 +2,7 @@ import prisma from '$lib/prisma';
 import { error } from '@sveltejs/kit';
 import { markdownToHtml } from '$lib/markdown';
 import type { PageServerLoad } from './$types';
-import type { PostModel } from '../../generated/prisma/models/Post';
-import type { CategoryModel } from '../../generated/prisma/models/Category';
-import type { UserModel } from '../../generated/prisma/models/User';
+import type { Post, Category, User } from '$generated/prisma';
 
 /**
  * slug로 단일 게시글을 조회하고, 마크다운을 HTML로 변환합니다.
@@ -14,7 +12,7 @@ import type { UserModel } from '../../generated/prisma/models/User';
 export const load: PageServerLoad = async ({
     params
 }): Promise<{
-    post: PostModel & { categories: CategoryModel[]; author: UserModel };
+    post: Post & { categories: Category[]; author: User };
     html: string;
 }> => {
     try {

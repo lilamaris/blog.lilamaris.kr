@@ -4,11 +4,16 @@
 
     import IterableItem from '$lib/components/fragment/IterableItem.svelte';
     import SummarizePost from '$lib/components/fragment/SummarizePost.svelte';
+    import { onMount } from 'svelte';
 
     const { data } = $props();
     const { categories, posts } = data;
 
     const selectedCategory = writable<Category | null>(null);
+
+    onMount(() => {
+        selectedCategory.set(categories[0]);
+    });
 
     const filteredPosts = derived([selectedCategory], ([$selectedCategory]) => {
         if (!$selectedCategory) {

@@ -3,8 +3,8 @@
     import { ArrowUpRight } from '@lucide/svelte';
     import { Route } from '$lib/config';
 
-    import AvatarIntroduce from '$lib/components/layout/home/AvatarIntroduce.svelte';
-    import SummarizePost from '$lib/components/layout/SummarizePost.svelte';
+    import AvatarIntroduce from '$lib/components/home/AvatarIntroduce.svelte';
+    import SummarizePost from '$lib/components/fragment/SummarizePost.svelte';
     import IterableItem from '$lib/components/fragment/IterableItem.svelte';
 
     const { data } = $props();

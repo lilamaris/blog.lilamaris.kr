@@ -3,7 +3,7 @@
     import { config } from '$lib/config';
     import { scrollTracker } from '$lib/action/scrollTracker';
     import { isScrolled } from '$lib/stores/layout';
-    import Header from '$lib/components/layout/home/Header.svelte';
+    import Header from '$lib/components/home/Header.svelte';
     
     import '../app.css';
     

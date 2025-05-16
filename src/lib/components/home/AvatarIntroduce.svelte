@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Github, type IconNode } from '@lucide/svelte';
-    import IconButton from '$lib/components/layout/IconButton.svelte';
+    import IconButton from '$lib/components/fragment/IconButton.svelte';
     import IterableItem from '$lib/components/fragment/IterableItem.svelte';
     import { config } from '$lib/config';
 

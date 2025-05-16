@@ -3,7 +3,7 @@
     import type { Category, Post } from '$generated/prisma';
 
     import IterableItem from '$lib/components/fragment/IterableItem.svelte';
-    import SummarizePost from '$lib/components/layout/SummarizePost.svelte';
+    import SummarizePost from '$lib/components/fragment/SummarizePost.svelte';
 
     const { data } = $props();
     const { categories, posts } = data;

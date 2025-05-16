@@ -1,5 +1,5 @@
 <script lang="ts">
-    import PostAbstract from '$lib/components/layout/write/PostAbstract.svelte';
+    import PostAbstract from '$lib/components/write/PostAbstract.svelte';
     const { data } = $props();
     const { post, html } = data;
 </script>

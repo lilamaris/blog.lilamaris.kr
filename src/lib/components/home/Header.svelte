@@ -3,7 +3,7 @@
     import { browser } from '$app/environment';
     import { preloadData, goto } from '$app/navigation';
     import { Home, Search, ArrowLeft, Sun, Moon } from '@lucide/svelte';
-    import ThemeController from '$lib/components/layout/ThemeController.svelte';
+    import ThemeController from '$lib/components/fragment/ThemeController.svelte';
     import { onMount, onDestroy } from 'svelte';
     interface Props {
         isScrolled?: boolean;

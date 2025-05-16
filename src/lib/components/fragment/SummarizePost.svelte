@@ -2,7 +2,7 @@
     import type { Post, Category } from '$generated/prisma';
     import { Route } from '$lib/config';
     import { formatDate } from '$lib/utils';
-    import CategoryList from '$lib/components/layout/CategoryList.svelte';
+    import CategoryList from '$lib/components/fragment/CategoryList.svelte';
 
     interface Props {
         index: number;

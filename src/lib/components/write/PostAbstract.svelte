@@ -1,6 +1,6 @@
 <script lang="ts">
     import { formatDate } from '$lib/utils';
-    import CategoryList from '$lib/components/layout/CategoryList.svelte';
+    import CategoryList from '$lib/components/fragment/CategoryList.svelte';
     import { Route } from '$lib/config';
 
     interface Props {

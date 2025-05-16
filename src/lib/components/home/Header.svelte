@@ -5,6 +5,8 @@
     import { Home, Search, ArrowLeft, Sun, Moon } from '@lucide/svelte';
     import ThemeController from '$lib/components/fragment/ThemeController.svelte';
     import { onMount, onDestroy } from 'svelte';
+    import HotKey from '$lib/components/fragment/HotKey.svelte';
+    
     interface Props {
         isScrolled?: boolean;
     }
@@ -76,8 +78,7 @@
     <label class="input hidden focus-within:outline-none sm:flex">
         <Search class="h-4 opacity-50" />
         <input type="text" name="search" placeholder="검색" class="grow" />
-        <kbd class="kbd kbd-sm">⌘</kbd>
-        <kbd class="kbd kbd-sm">K</kbd>
+        <HotKey keys={['⌘', 'K']} />
     </label>
 
     <div class="flex items-center justify-end gap-2">

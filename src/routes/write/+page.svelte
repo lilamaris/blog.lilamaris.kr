@@ -1,10 +1,11 @@
 <script lang="ts">
     import { derived, writable } from 'svelte/store';
+    import { page } from '$app/state';
     import type { Category, Post } from '$generated/prisma';
 
-    import IterableItem from '$lib/components/fragment/IterableItem.svelte';
     import SummarizePost from '$lib/components/fragment/SummarizePost.svelte';
     import { onMount } from 'svelte';
+    import IterableItem from '$lib/components/fragment/IterableItem.svelte';
 
     const { data } = $props();
     const { categories, posts } = data;
@@ -12,7 +13,10 @@
     const selectedCategory = writable<Category | null>(null);
 
     onMount(() => {
-        selectedCategory.set(categories[0]);
+        const categoryUrlQuery = page.url.searchParams.get('category');
+        const category = categories.find((c) => c.name === categoryUrlQuery);
+        if (!category) return;
+        selectedCategory.set(category);
     });
 
     const filteredPosts = derived([selectedCategory], ([$selectedCategory]) => {

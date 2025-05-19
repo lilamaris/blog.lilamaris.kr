@@ -36,7 +36,7 @@
 {/snippet}
 
 {#snippet categoryItemSnippet(category: (typeof categories)[number])}
-    <div class="tooltip tooltip-bottom" data-tip={`${category._count.posts}개의 글`}>
+    <div class="tooltip tooltip-bottom" data-tip={`${category._count?.posts ?? 0}개의 글`}>
         <input
             class="btn btn-sm mr-1"
             type="radio"

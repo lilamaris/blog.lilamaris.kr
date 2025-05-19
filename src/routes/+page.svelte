@@ -1,5 +1,6 @@
 <script lang="ts">
-    import type { Post, Category } from '$generated/prisma';
+    import type { Post } from '$lib/types/post';
+    import type { Category } from '$lib/types/category';
     import { ArrowUpRight } from '@lucide/svelte';
     import { Route } from '$lib/config';
 
@@ -15,7 +16,7 @@
     <SummarizePost {index} {post} categories={post.categories} />
 {/snippet}
 
-<div class="max-w-content mx-auto">
+<div class="max-w-content w-content mx-auto">
     <AvatarIntroduce />
     <div class="divider text-fsm text-base-content/60">최근 게시글</div>
     <IterableItem parent="ul" class="list" items={recentPosts} {itemSnippet}>

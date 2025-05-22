@@ -105,4 +105,14 @@
     pre {
         @apply font-jetbrains whitespace-pre-wrap;
     }
+
+    .figure {
+        @apply mx-auto flex flex-col items-start;
+        img {
+            @apply rounded-field object-cover object-left;
+        }
+        figcaption {
+            @apply text-fsm text-base-content/60;
+        }
+    }
 }

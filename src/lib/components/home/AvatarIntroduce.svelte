@@ -2,7 +2,7 @@
     import { Github, type IconNode } from '@lucide/svelte';
     import IconButton from '$lib/components/fragment/IconButton.svelte';
     import IterableItem from '$lib/components/fragment/IterableItem.svelte';
-    import { config } from '$lib/config';
+    import { context } from '$lib/utils/context';
 
     const XIcon: IconNode = [
         [
@@ -42,8 +42,8 @@
         </div>
     </div>
     <div class="flex-1 flex-col">
-        <h1 class="text-flg font-bold">{config.nickname}</h1>
-        <p class="text-fsm">{config.description}</p>
+        <h1 class="text-flg font-bold">{context.nickname}</h1>
+        <p class="text-fsm">{context.description}</p>
         <IterableItem
             parent="ul"
             class="mt-2 flex gap-1"

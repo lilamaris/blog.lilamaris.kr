@@ -1,5 +1,5 @@
-import type { Post } from '../types/post';
-import { getBaseUrl } from './util.server';
+import type { Post } from '$lib/types/post';
+import { context } from '$lib/utils/context';
 
 export interface PostRetrieveOptions {
     page?: number;
@@ -7,14 +7,13 @@ export interface PostRetrieveOptions {
     search?: string;
 }
 
-const API_URL = `${getBaseUrl()}/posts`;
+const API_URL = `${context.apiBaseUrl}/posts`;
 
 /**
  * 모든 포스트 목록을 조회합니다.
  */
 export const getPosts = async (options: PostRetrieveOptions = {}): Promise<Post[]> => {
     try {
-        console.log('Post service API URL: ', API_URL);
         const queryParams = new URLSearchParams();
         if (options.page) queryParams.set('page', options.page.toString());
         if (options.limit) queryParams.set('limit', options.limit.toString());

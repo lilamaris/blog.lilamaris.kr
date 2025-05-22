@@ -1,11 +1,11 @@
-import type { Category } from '../types/category';
-import { getBaseUrl } from './util.server';
+import type { Category } from '$lib/types/category';
+import { context } from '$lib/utils/context';
 
 export interface CategoryRetrieveOptions {
     search?: string;
 }
 
-const API_URL = `${getBaseUrl()}/category`;
+const API_URL = `${context.apiBaseUrl}/category`;
 
 /**
  * 모든 카테고리 목록을 조회합니다.

@@ -47,7 +47,7 @@
     </div>
 {/snippet}
 
-<div class="max-w-content mx-auto">
+<div class="max-w-content mx-1 md:mx-auto">
     <div class="divider text-fsm text-base-content/60">게시글</div>
     <IterableItem
         parent="form"

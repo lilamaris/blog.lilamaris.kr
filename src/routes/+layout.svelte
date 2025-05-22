@@ -1,18 +1,18 @@
 <script lang="ts">
     import { blur } from 'svelte/transition';
-    import { config } from '$lib/config';
+    import { context } from '$lib/utils/context';
     import { scrollTracker } from '$lib/action/scrollTracker';
     import { isScrolled } from '$lib/stores/layout';
     import Header from '$lib/components/home/Header.svelte';
-    
+
     import '../app.css';
-    
+
     const { data, children } = $props();
 </script>
 
 <svelte:head>
-    <title>{config.title}</title>
-    <meta name="description" content={config.description} />
+    <title>{context.title}</title>
+    <meta name="description" content={context.description} />
 </svelte:head>
 
 <div class="flex min-h-screen flex-col">

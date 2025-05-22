@@ -1,12 +1,11 @@
 <script lang="ts">
-    import { config } from '$lib/config';
     import { browser } from '$app/environment';
-    import { preloadData, goto } from '$app/navigation';
+    import { goto } from '$app/navigation';
     import { Home, Search, ArrowLeft, Sun, Moon } from '@lucide/svelte';
     import ThemeController from '$lib/components/fragment/ThemeController.svelte';
     import { onMount, onDestroy } from 'svelte';
     import HotKey from '$lib/components/fragment/HotKey.svelte';
-    
+
     interface Props {
         isScrolled?: boolean;
     }

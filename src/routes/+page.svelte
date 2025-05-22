@@ -7,7 +7,8 @@
     import AvatarIntroduce from '$lib/components/home/AvatarIntroduce.svelte';
     import SummarizePost from '$lib/components/fragment/SummarizePost.svelte';
     import IterableItem from '$lib/components/fragment/IterableItem.svelte';
-
+    import SEO from '$lib/components/SEO.svelte';
+    
     const { data } = $props();
     const { recentPosts } = data;
 </script>
@@ -15,6 +16,8 @@
 {#snippet itemSnippet(post: Post & { categories: Category[] }, index: number)}
     <SummarizePost {index} {post} categories={post.categories} />
 {/snippet}
+
+<SEO title="홈" description="홈" />
 
 <div class="max-w-content mx-1 md:mx-auto">
     <AvatarIntroduce />

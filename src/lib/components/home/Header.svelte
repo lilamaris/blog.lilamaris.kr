@@ -52,7 +52,7 @@
 
 {#snippet themeController(onClick: () => void)}
     <label class="btn btn-square swap swap-rotate tooltip tooltip-bottom" data-tip="테마 변경">
-        <input type="checkbox" class="theme-controller" onclick={onClick} />
+        <input type="checkbox" class="theme-controller" onclick={onClick} aria-label="테마 변경" />
 
         <Sun class="swap-on h-4" />
         <Moon class="swap-off h-4" />
@@ -64,17 +64,18 @@
         ? 'bg-base-100/80 rounded-box shadow-md backdrop-blur-md'
         : 'bg-inherit shadow-none'}"
 >
-    <a class="btn btn-square tooltip tooltip-base-100 tooltip-bottom" data-tip="홈으로" href="/">
+    <a class="btn btn-square tooltip tooltip-base-100 tooltip-bottom" data-tip="홈으로" href="/" aria-label="홈으로">
         <Home class="h-4" />
     </a>
     <button
         class="tooltip btn btn-square tooltip-bottom"
         data-tip="뒤로 가기"
+        aria-label="뒤로 가기"
         onclick={goToParentRoute}
     >
         <ArrowLeft class="h-4" />
     </button>
-    <label class="input hidden focus-within:outline-none sm:flex">
+    <label class="input hidden focus-within:outline-none sm:flex" aria-label="검색">
         <Search class="h-4 opacity-50" />
         <input type="text" name="search" placeholder="검색" class="grow" />
         <HotKey keys={['⌘', 'K']} />

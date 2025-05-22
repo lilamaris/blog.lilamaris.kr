@@ -6,7 +6,8 @@
     import SummarizePost from '$lib/components/fragment/SummarizePost.svelte';
     import { onMount } from 'svelte';
     import IterableItem from '$lib/components/fragment/IterableItem.svelte';
-
+    import SEO from '$lib/components/SEO.svelte';
+    
     const { data } = $props();
     const { categories, posts } = data;
 
@@ -46,6 +47,8 @@
         />
     </div>
 {/snippet}
+
+<SEO title="게시글" description="게시글 목록" />
 
 <div class="max-w-content mx-1 md:mx-auto">
     <div class="divider text-fsm text-base-content/60">게시글</div>

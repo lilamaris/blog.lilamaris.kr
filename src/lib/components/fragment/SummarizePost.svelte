@@ -23,8 +23,8 @@
         {index + 1}
     </div>
     <div>
-        <h1 class="text-fmd line-clamp-2">{post.title}</h1>
-        <small class="list-col-wrap text-fsm text-base-content/60 line-clamp-2">
+        <h1 class="text-md line-clamp-2">{post.title}</h1>
+        <small class="list-col-wrap text-base-content/60 line-clamp-2 text-sm">
             {post.description}
         </small>
         <CategoryList class="mt-1 flex flex-wrap gap-1" {categories} />

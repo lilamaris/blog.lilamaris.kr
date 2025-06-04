@@ -103,16 +103,24 @@
     }
 
     pre {
-        @apply font-jetbrains whitespace-pre-wrap;
+        @apply whitespace-pre-wrap;
     }
 
-    .figure {
-        @apply mx-auto flex flex-col items-start;
-        img {
-            @apply rounded-field object-cover object-left;
+    .rehype-code-title {
+        @apply max-w-content px-5 text-sm text-neutral-300 select-none;
+    }
+
+    figure:has(pre) {
+        @apply -mt-8;
+    }
+
+    figure {
+        pre {
+            @apply bg-black/60 pt-10;
         }
-        figcaption {
-            @apply text-fsm text-base-content/60;
+
+        button[title='Copy code'] {
+            @apply top-2;
         }
     }
 }

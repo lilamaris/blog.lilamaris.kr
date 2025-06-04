@@ -18,9 +18,10 @@ export const load: PageServerLoad = async ({
     try {
         const post = await getPostBySlug(params.slug);
         if (!post) throw new Error('포스트를 찾을 수 없습니다.');
-        const html = markdownToHtml(post.content);
+        const html = await markdownToHtml(post.content);
         return { post, html };
-    } catch {
+    } catch (err) {
+        console.error(err);
         error(404, '포스트를 찾을 수 없습니다.');
     }
 };

@@ -5,13 +5,26 @@ import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeCodeTitles from 'rehype-code-titles';
+import rehypePrettyCode from 'rehype-pretty-code';
+
 import { context } from '$lib/utils/context';
+import { transformerCopyButton } from '@rehype-pretty/transformers';
 
 export const markdownProcessor = unified()
     .use(remarkParse) // convert markdown to abstract syntax tree
     .use(remarkRehype, { allowDangerousHtml: true }) // convert abstract syntax tree to html
-    .use(rehypeSlug)
-    .use(rehypeAutolinkHeadings)
+    .use([rehypeSlug, rehypeAutolinkHeadings])
+    .use(rehypeCodeTitles)
+    .use(rehypePrettyCode, {
+        keepBackground: false,
+        transformers: [
+            transformerCopyButton({
+                visibility: 'always',
+                feedbackDuration: 3_000
+            })
+        ]
+    })
     .use(rehypeStringify, { allowDangerousHtml: true }); // convert html to string
 
 const replaceImageAlias = (content: string) => {
@@ -34,13 +47,13 @@ const replaceImageAlias = (content: string) => {
     });
 };
 
-const parseMarkdown = (content: string) => {
+const parseMarkdown = async (content: string) => {
     const processReplaceImageAlias = replaceImageAlias(content);
-    const markdown = markdownProcessor.processSync(processReplaceImageAlias);
+    const markdown = await markdownProcessor.process(processReplaceImageAlias);
     return markdown.toString();
 };
 
-export const markdownToHtml = (content: string) => {
-    const markdown = parseMarkdown(content);
+export const markdownToHtml = async (content: string) => {
+    const markdown = await parseMarkdown(content);
     return markdown;
 };

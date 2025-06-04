@@ -8,7 +8,7 @@
     import SummarizePost from '$lib/components/fragment/SummarizePost.svelte';
     import IterableItem from '$lib/components/fragment/IterableItem.svelte';
     import SEO from '$lib/components/SEO.svelte';
-    
+
     const { data } = $props();
     const { recentPosts } = data;
 </script>
@@ -21,7 +21,7 @@
 
 <div class="max-w-content mx-1 md:mx-auto">
     <AvatarIntroduce />
-    <div class="divider text-fsm text-base-content/60">최근 게시글</div>
+    <div class="divider text-base-content/60 text-sm">최근 게시글</div>
     <IterableItem parent="ul" class="list" items={recentPosts} {itemSnippet}>
         <a
             href={Route.Write}

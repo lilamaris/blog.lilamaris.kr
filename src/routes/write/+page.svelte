@@ -51,7 +51,7 @@
 <SEO title="게시글" description="게시글 목록" />
 
 <div class="max-w-content mx-1 md:mx-auto">
-    <div class="divider text-fsm text-base-content/60">게시글</div>
+    <div class="divider text-sm text-base-content/60">게시글</div>
     <IterableItem
         parent="form"
         class=" filter"

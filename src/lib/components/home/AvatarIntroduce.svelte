@@ -37,18 +37,16 @@
 
 <div class="flex">
     <div class="avatar">
-        <div class="rounded-box w-28">
+        <div class="rounded-box h-24">
             <img src="/Lilamaris.svg" alt="프로필" />
         </div>
     </div>
-    <div class="flex-1 flex-col">
-        <h1 class="text-flg font-bold">{context.nickname}</h1>
-        <p class="text-fsm">{context.description}</p>
-        <IterableItem
-            parent="ul"
-            class="mt-2 flex gap-1"
-            items={SNS}
-            itemSnippet={SNSButtonSnippet}
-        />
+    <div class="flex flex-col gap-4">
+        <div>
+            <h1 class="text-xl font-bold">{context.nickname}</h1>
+            <p class="text-sm">{context.description}</p>
+        </div>
+
+        <IterableItem parent="ul" class="flex gap-1" items={SNS} itemSnippet={SNSButtonSnippet} />
     </div>
 </div>

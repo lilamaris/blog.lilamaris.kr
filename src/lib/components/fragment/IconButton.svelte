@@ -8,7 +8,7 @@
         icon: IconNode | Component<IconProps, {}, ''>;
     }
 
-    const { name, href, icon }: Props = $props();
+    const { name, href, icon: IconComponent }: Props = $props();
 </script>
 
 <a
@@ -18,10 +18,9 @@
     data-tip={name}
     aria-label={name}
 >
-    {#if typeof icon === 'function'}
-        {@const IconComponent = icon}
+    {#if typeof IconComponent === 'function'}
         <IconComponent class="h-4 w-4" />
     {:else}
-        <Icon class="h-4 w-4" iconNode={icon} />
+        <Icon class="h-4 w-4" iconNode={IconComponent} />
     {/if}
 </a>

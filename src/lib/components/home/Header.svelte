@@ -1,7 +1,7 @@
 <script lang="ts">
     import { browser } from '$app/environment';
     import { goto } from '$app/navigation';
-    import { Home, Search, ArrowLeft, Sun, Moon } from '@lucide/svelte';
+    import { Home, Search, ArrowLeft, Sun, Moon, Send } from '@lucide/svelte';
     import ThemeController from '$lib/components/fragment/ThemeController.svelte';
     import { onMount, onDestroy } from 'svelte';
     import HotKey from '$lib/components/fragment/HotKey.svelte';
@@ -50,9 +50,15 @@
     };
 </script>
 
-{#snippet themeController(onClick: () => void)}
+{#snippet themeController(dark: boolean, onClick: () => void)}
     <label class="btn btn-square swap swap-rotate tooltip tooltip-bottom" data-tip="테마 변경">
-        <input type="checkbox" class="theme-controller" onclick={onClick} aria-label="테마 변경" />
+        <input
+            type="checkbox"
+            class="theme-controller"
+            onclick={onClick}
+            checked={dark}
+            aria-label="테마 변경"
+        />
 
         <Sun class="swap-on h-4" />
         <Moon class="swap-off h-4" />
@@ -64,7 +70,12 @@
         ? 'bg-base-100/80 rounded-box shadow-md backdrop-blur-md'
         : 'bg-inherit shadow-none'}"
 >
-    <a class="btn btn-square tooltip tooltip-base-100 tooltip-bottom" data-tip="홈으로" href="/" aria-label="홈으로">
+    <a
+        class="btn btn-square tooltip tooltip-base-100 tooltip-bottom"
+        data-tip="홈으로"
+        href="/"
+        aria-label="홈으로"
+    >
         <Home class="h-4" />
     </a>
     <button
@@ -81,7 +92,8 @@
         <HotKey keys={['⌘', 'K']} />
     </label>
 
-    <div class="flex items-center justify-end gap-2">
-        <ThemeController controller={themeController} />
-    </div>
+    <ThemeController controller={themeController} />
+    <button class="btn btn-square tooltip tooltip-bottom" data-tip="공유">
+        <Send class="h-4" />
+    </button>
 </header>

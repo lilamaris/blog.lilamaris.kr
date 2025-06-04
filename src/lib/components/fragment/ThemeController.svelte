@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount, type Snippet } from 'svelte';
 
-    let dark: boolean;
+    let dark: boolean = $state(false);
 
     onMount(() => {
         dark = document.documentElement.dataset.theme === 'dark';
@@ -33,7 +33,7 @@
     }
 
     interface Props {
-        controller: Snippet<[() => void]>;
+        controller: Snippet<[boolean, () => void]>;
     }
     const { controller }: Props = $props();
 </script>
@@ -52,4 +52,4 @@
     </script>
 </svelte:head>
 
-{@render controller(toggle)}
+{@render controller(dark, toggle)}

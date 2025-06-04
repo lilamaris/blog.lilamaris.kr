@@ -12,7 +12,7 @@
 </script>
 
 <section class="flex flex-col gap-1">
-    <h1 class="text-xl font-bold">{post.title}</h1>
+    <h1 class="text-2xl font-bold">{post.title}</h1>
     <p class="text-base-content/80 text-sm">{post.description}</p>
     <div class="flex gap-3">
         <small class="text-base-content/40">작성: {formatDate(post.createdAt)}</small>

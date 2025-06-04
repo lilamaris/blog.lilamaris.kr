@@ -43,7 +43,7 @@
     </div>
     <div class="flex flex-col gap-4">
         <div>
-            <h1 class="text-xl font-bold">{context.nickname}</h1>
+            <h1 class="text-2xl font-bold">{context.nickname}</h1>
             <p class="text-sm">{context.description}</p>
         </div>
 

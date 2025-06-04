@@ -81,7 +81,7 @@
     --font-noto: 'Noto Sans KR', sans-serif;
     --font-jetbrains: 'JetBrains Mono', monospace;
 
-    --container-content: var(--container-2xl);
+    --container-content: var(--container-3xl);
     --container-header: calc(var(--spacing) * 24);
 }
 
@@ -93,25 +93,67 @@
 }
 
 @utility prose {
-    pre {
-        @apply whitespace-pre-wrap;
+    h1 {
+        @apply text-xl;
     }
 
-    .rehype-code-title {
-        @apply max-w-content px-5 text-sm text-neutral-300 select-none;
+    h2 {
+        @apply text-lg;
     }
 
-    figure:has(pre) {
-        @apply -mt-8;
+    h3 {
+        @apply text-base;
     }
 
-    figure {
+    p {
+        @apply mb-4;
+    }
+
+    [data-rehype-pretty-code-figure] {
+        figcaption,
         pre {
-            @apply bg-black/60 pt-10;
+            @apply bg-base-100 dark:bg-black/30;
         }
 
-        button[title='Copy code'] {
-            @apply top-2;
+        figcaption {
+            @apply rounded-t-field text-base-content/80 border-base-300 border-b px-4 py-1 font-mono text-sm italic select-none;
+        }
+        pre {
+            @apply rounded-b-field rounded-none;
+
+            code[data-line-numbers] {
+                counter-reset: line;
+            }
+
+            code[data-line-numbers] > [data-line]::before {
+                counter-increment: line;
+                content: counter(line);
+                @apply text-base-content/50 mr-8 inline-block w-3 text-right;
+            }
+
+            code[data-line-numbers-max-digits='2'] > [data-line]::before {
+                @apply w-4;
+            }
+
+            code[data-line-numbers-max-digits='3'] > [data-line]::before {
+                @apply w-5;
+            }
+
+            code[data-line-numbers-max-digits='4'] > [data-line]::before {
+                @apply w-6;
+            }
+
+            code[data-theme*=' '],
+            code[data-theme*=' '] span {
+                color: var(--shiki-light);
+            }
+
+            @variant dark {
+                code[data-theme*=' '],
+                code[data-theme*=' '] span {
+                    color: var(--shiki-dark);
+                }
+            }
         }
     }
 }

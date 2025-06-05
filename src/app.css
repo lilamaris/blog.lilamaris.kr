@@ -1,6 +1,6 @@
 @import 'tailwindcss';
-@plugin "daisyui";
 @plugin "@tailwindcss/typography";
+@plugin "daisyui";
 
 @import '@fontsource-variable/noto-sans-kr';
 @import '@fontsource-variable/jetbrains-mono';
@@ -88,35 +88,29 @@
 @layer base {
     html,
     body {
-        @apply font-noto bg-base-200 m-0 min-h-screen p-0 transition-colors;
+        @apply font-noto bg-base-100 m-0 min-h-screen p-0 transition-colors;
     }
 }
 
 @utility prose {
-    h1 {
-        @apply text-xl;
+    @apply prose-h1:text-xl prose-h2:text-lg prose-h3:text-base;
+
+    kbd {
+        @apply kbd;
     }
 
-    h2 {
-        @apply text-lg;
-    }
-
-    h3 {
-        @apply text-base;
-    }
-
-    p {
-        @apply mb-4;
+    em {
+        @apply bg-base-200 rounded-field px-1 py-px font-mono shadow-sm;
     }
 
     [data-rehype-pretty-code-figure] {
         figcaption,
         pre {
-            @apply bg-base-100 dark:bg-black/30;
+            @apply bg-base-200;
         }
 
         figcaption {
-            @apply rounded-t-field text-base-content/80 border-base-300 border-b px-4 py-1 font-mono text-sm italic select-none;
+            @apply rounded-t-field text-base-content/80 border-base-300/80 border-b px-4 py-1 font-mono text-sm italic select-none;
         }
         pre {
             @apply rounded-b-field rounded-none;

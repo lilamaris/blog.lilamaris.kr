@@ -4,7 +4,6 @@ import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeCodeTitles from 'rehype-code-titles';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { transformerCopyButton } from '@rehype-pretty/transformers';
 
@@ -15,9 +14,12 @@ export const markdownProcessor = unified()
     .use(remarkParse) // convert markdown to abstract syntax tree
     .use(remarkRehype, { allowDangerousHtml: true }) // convert abstract syntax tree to html
     .use([rehypeSlug, rehypeAutolinkHeadings, rehypeCollectHeadings])
-    .use(rehypeCodeTitles)
     .use(rehypePrettyCode, {
         keepBackground: false,
+        theme: {
+            dark: 'github-dark-dimmed',
+            light: 'github-light'
+        },
         transformers: [
             transformerCopyButton({
                 visibility: 'always',

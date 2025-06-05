@@ -1,6 +1,7 @@
 <script lang="ts">
     import PostAbstract from '$lib/components/write/PostAbstract.svelte';
     import SEO from '$lib/components/SEO.svelte';
+    import TableOfContent from '$lib/components/write/TableOfContent.svelte';
 
     const { data } = $props();
     const { post, html, toc } = data;
@@ -11,14 +12,10 @@
 <div class="max-w-content mx-1 flex flex-col gap-4 md:mx-auto">
     <PostAbstract {post} />
     <article class="prose max-w-content relative">
-        <div class="absolute left-full">
-            <ul class="menu fixed w-max">
-                {#each toc as item}
-                    <li>
-                        <a href={`#${item.id}`}>{item.text}</a>
-                    </li>
-                {/each}
-            </ul>
+        <div class="not-prose absolute left-full">
+            <div class="fixed">
+                <TableOfContent {toc} />
+            </div>
         </div>
         {@html html}
     </article>

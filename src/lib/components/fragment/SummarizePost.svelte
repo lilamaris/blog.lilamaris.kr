@@ -23,7 +23,7 @@
         {index + 1}
     </div>
     <div>
-        <h1 class="text-md line-clamp-2">{post.title}</h1>
+        <h1 class="text-lg line-clamp-2">{post.title}</h1>
         <small class="list-col-wrap text-base-content/60 line-clamp-2 text-sm">
             {post.description}
         </small>

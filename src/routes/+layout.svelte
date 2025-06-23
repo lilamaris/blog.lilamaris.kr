@@ -4,7 +4,7 @@
     import { scrollTracker } from '$lib/action/scrollTracker';
     import { isScrolled } from '$lib/stores/layout';
     import Header from '$lib/components/home/Header.svelte';
-
+    import Footer from '$lib/components/home/Footer.svelte';
     import '../app.css';
 
     const { data, children } = $props();
@@ -24,4 +24,5 @@
             {@render children()}
         </main>
     {/key}
+    <Footer />
 </div>

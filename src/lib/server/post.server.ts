@@ -44,3 +44,15 @@ export const getPostBySlug = async (slug: string): Promise<Post | null> => {
         return null;
     }
 };
+
+export const searchPosts = async (search: string): Promise<Post[]> => {
+    try {
+        const res = await fetch(`${API_URL}/search?search=${search}`);
+        if (!res.ok) throw new Error('포스트 검색 실패');
+        const data = await res.json();
+        return data as Post[];
+    } catch (err) {
+        console.error(err);
+        return [];
+    }
+}

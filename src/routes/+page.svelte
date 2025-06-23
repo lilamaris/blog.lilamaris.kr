@@ -25,11 +25,11 @@
     <IterableItem parent="ul" class="list" items={recentPosts} {itemSnippet}>
         <a
             href={Route.Write}
-            class="hover:text-accent text-base-content/40 mb-2 flex flex-row-reverse gap-1 transition-colors"
+            class="hover:text-accent text-base-content/40 mb-2 ml-auto flex w-fit items-center gap-1 transition-colors"
             data-sveltekit-preload-data
         >
-            <ArrowUpRight class="h-4 w-4" />
             <small>더 보기</small>
+            <ArrowUpRight class="h-4 w-4" />
         </a>
     </IterableItem>
 </div>

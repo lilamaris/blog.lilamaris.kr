@@ -3,6 +3,16 @@ import path from 'path';
 import matter from 'gray-matter';
 import { type Post } from '$lib/types/post';
 
+const postBase = path.resolve('posts');
+export const readPost = async (slug: string) => {
+    try {
+        const postPath = path.join(postBase, slug, `${slug}.md`);
+        const content = await fs.readFile(postPath, 'utf-8');
+        return matter(content);
+    } catch (e) {
+        throw new Error(`Could not read post ${slug}`);
+    }
+};
 export const readPosts = async () => {
     try {
         const posts: Post[] = [];

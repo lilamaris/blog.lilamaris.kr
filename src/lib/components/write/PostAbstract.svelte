@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { formatDate } from '$lib/utils/form';
     import CategoryList from '$lib/components/fragment/CategoryList.svelte';
-    import { Route } from '$lib/utils/context';
+    import { Route } from '$lib/config/general';
     import type { Post } from '$lib/types/post';
+    import { formatDate } from '$lib/util';
 
     interface Props {
         post: Post;
@@ -15,8 +15,7 @@
     <h1 class="text-2xl font-bold">{post.title}</h1>
     <p class="text-base-content/80 text-sm">{post.description}</p>
     <div class="flex gap-3">
-        <small class="text-base-content/40">작성: {formatDate(post.createdAt)}</small>
-        <small class="text-base-content/40">수정: {formatDate(post.updatedAt)}</small>
+        <small class="text-base-content/40">작성: {formatDate(post.publishedAt)}</small>
     </div>
     <CategoryList
         class="mt-4 flex gap-1"

@@ -1,6 +1,7 @@
 <script lang="ts">
     import { blur } from 'svelte/transition';
-    import { context } from '$lib/config/general';
+    import { context } from '$lib/config';
+
     import { scrollTracker } from '$lib/action/scrollTracker';
     import Header from '$lib/components/header';
     import Footer from '$lib/components/Footer.svelte';

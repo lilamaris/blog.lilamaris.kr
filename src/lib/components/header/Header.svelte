@@ -1,11 +1,10 @@
 <script lang="ts">
     import { browser } from '$app/environment';
     import { goto } from '$app/navigation';
-    import { onMount, onDestroy } from 'svelte';
 
-    import { Home, Search, ArrowLeft, Sun, Moon, Send } from '@lucide/svelte';
+    import { Home, ArrowLeft, Sun, Moon, Send } from '@lucide/svelte';
     import ThemeController from '../ThemeController.svelte';
-    import HotKey from '../HotKey.svelte';
+    import SearchBar from './SearchBar.svelte';
 
     interface Props {
         isScrolled?: boolean;
@@ -13,30 +12,6 @@
 
     let { isScrolled = false }: Props = $props();
 
-    // Ctrl + K 키 이벤트 -> search input 포커스
-    const handleKeyDown = (event: KeyboardEvent) => {
-        if (event.ctrlKey && event.key === 'k') {
-            event.preventDefault();
-            (document.querySelector('input[name="search"]') as HTMLInputElement).focus();
-        }
-    };
-
-    onMount(() => {
-        if (browser) {
-            window.addEventListener('keydown', handleKeyDown);
-        }
-    });
-
-    onDestroy(() => {
-        if (browser) {
-            window.removeEventListener('keydown', handleKeyDown);
-        }
-    });
-
-    /**
-     * 현재 경로에서 한 단계 상위 경로로 이동합니다.
-     * 최상위('/')에서는 홈으로 이동합니다.
-     */
     const goToParentRoute = (): void => {
         if (!browser) return;
         const path = window.location.pathname;
@@ -87,11 +62,7 @@
     >
         <ArrowLeft class="h-4" />
     </button>
-    <label class="input hidden focus-within:outline-none sm:flex" aria-label="검색">
-        <Search class="h-4 opacity-50" />
-        <input type="text" name="search" placeholder="검색" class="grow" />
-        <HotKey keys={['⌘', 'K']} />
-    </label>
+    <SearchBar />
 
     <ThemeController controller={themeController} />
     <button class="btn btn-square tooltip tooltip-bottom" data-tip="공유">

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Route } from '$lib/config/general';
+    import { Route } from '$lib/config';
     import { type Post } from '$lib/types/post';
 
     import { formatDate } from '$lib/util';

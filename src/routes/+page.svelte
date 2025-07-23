@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { Post } from '$lib/types/post';
     import { ArrowUpRight } from '@lucide/svelte';
-    import { Route } from '$lib/config/general.js';
+    import { Route } from '$lib/config';
 
     import Introduction from '$lib/components/Introduction.svelte';
     import SummarizePost from '$lib/components/post/SummarizePost.svelte';

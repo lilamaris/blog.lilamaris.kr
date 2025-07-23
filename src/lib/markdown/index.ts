@@ -7,7 +7,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { transformerCopyButton } from '@rehype-pretty/transformers';
 
-import { context } from '$lib/config/general';
+import { context } from '$lib/config';
 import { rehypeCollectHeadings, type TocItem } from './plugins';
 
 export const markdownProcessor = unified()

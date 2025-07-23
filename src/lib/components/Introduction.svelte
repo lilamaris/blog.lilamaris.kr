@@ -3,7 +3,7 @@
     import IconButton from './IconButton.svelte';
     import IterableItem from './IterableItem.svelte';
 
-    import { context } from '$lib/config/general';
+    import { context } from '$lib/config';
 
     const XIcon: IconNode = [
         [

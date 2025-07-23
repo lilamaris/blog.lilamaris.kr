@@ -1,16 +1,15 @@
 <script lang="ts">
-    import type { Post, Category } from '$generated/prisma';
-    import { Route } from '$lib/utils/context';
-    import { formatDate } from '$lib/utils/form';
+    import { Route } from '$lib/config/general';
+    import { type Post } from '$lib/types/post';
     import CategoryList from '$lib/components/fragment/CategoryList.svelte';
+    import { formatDate } from '$lib/util';
 
     interface Props {
         index: number;
         post: Post;
-        categories: Category[];
     }
 
-    const { index, post, categories }: Props = $props();
+    const { index, post }: Props = $props();
 </script>
 
 <a
@@ -23,13 +22,13 @@
         {index + 1}
     </div>
     <div>
-        <h1 class="text-lg line-clamp-2">{post.title}</h1>
+        <h1 class="line-clamp-2 text-lg">{post.title}</h1>
         <small class="list-col-wrap text-base-content/60 line-clamp-2 text-sm">
             {post.description}
         </small>
-        <CategoryList class="mt-1 flex flex-wrap gap-1" {categories} />
+        <CategoryList class="mt-1 flex flex-wrap gap-1" categories={post.categories} />
     </div>
     <small class="text-base-content/40 hidden truncate sm:block">
-        {formatDate(post.createdAt)}
+        {formatDate(post.publishedAt)}
     </small>
 </a>

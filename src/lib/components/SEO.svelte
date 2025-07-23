@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { seoContext } from '$lib/utils/context';
+    import { seoContext } from '$lib/config/general';
     import { page } from '$app/state';
 
     const { title, description } = $props();

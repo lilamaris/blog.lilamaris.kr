@@ -1,5 +1,4 @@
 <script lang="ts">
-    import type { Category } from '$generated/prisma';
     import type { HTMLAttributes } from 'svelte/elements';
     import IterableItem from '$lib/components/fragment/IterableItem.svelte';
 
@@ -8,22 +7,24 @@
     }
 
     interface Props extends HTMLAttributes<HTMLElement> {
-        categories: Category[];
+        categories: string[];
         queryOption?: QueryOption;
     }
 
     const { categories, queryOption, ...attributes }: Props = $props();
 </script>
 
-{#snippet itemSnippet(category: Category)}
+{#snippet itemSnippet(category: string)}
     {@const el = queryOption ? 'a' : 'span'}
     <li>
         <svelte:element
             this={el}
-            href={queryOption ? `${queryOption.prefix}?category=${category.name}` : ''}
-            class="badge badge-outline badge-sm text-base-content/40 line-clamp-1 {queryOption ? 'cursor-pointer transition-colors hover:text-accent' : 'cursor-default'}"
+            href={queryOption ? `${queryOption.prefix}?category=${category}` : ''}
+            class="badge badge-outline badge-sm text-base-content/40 line-clamp-1 {queryOption
+                ? 'hover:text-accent cursor-pointer transition-colors'
+                : 'cursor-default'}"
         >
-            {category.name}
+            {category}
         </svelte:element>
     </li>
 {/snippet}

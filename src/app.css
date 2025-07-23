@@ -103,6 +103,10 @@
         @apply bg-base-200 rounded-field px-1 py-px font-mono shadow-sm;
     }
 
+    pre {
+        @apply bg-base-300;
+    }
+
     [data-rehype-pretty-code-figure] {
         figcaption,
         pre {

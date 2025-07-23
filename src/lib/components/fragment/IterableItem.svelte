@@ -3,13 +3,17 @@
     import type { HTMLAttributes } from 'svelte/elements';
     type Item = T[I] extends string | number ? T : never;
 
-    interface Props extends HTMLAttributes<HTMLElement> {
+    interface PropBase extends HTMLAttributes<HTMLElement> {
         parent?: string;
         children?: Snippet;
-        itemSnippet: Snippet<[Item, number]>;
-        items: Item[];
-        itemIdentifier: I;
+        itemSnippet: Snippet<[T, number]>;
+        items: T[];
+        itemIdentifier?: I;
     }
+
+    type WithIdentifier = { itemIdentifier: I } & (T[I] extends string | number ? {} : never);
+    type WithoutIdentifier = { itemIdentifier?: undefined };
+    type Props = PropBase & (WithIdentifier | WithoutIdentifier);
 
     const {
         parent = 'ul',
@@ -23,7 +27,7 @@
 
 <svelte:element this={parent} {...attributes}>
     {@render children?.()}
-    {#each items as item, index (item[itemIdentifier] ?? index)}
+    {#each items as item, index (itemIdentifier ? item[itemIdentifier] : index)}
         {@render itemSnippet(item, index)}
     {/each}
 </svelte:element>

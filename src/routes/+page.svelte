@@ -3,9 +3,9 @@
     import { ArrowUpRight } from '@lucide/svelte';
     import { Route } from '$lib/config/general.js';
 
-    import AvatarIntroduce from '$lib/components/home/AvatarIntroduce.svelte';
-    import SummarizePost from '$lib/components/fragment/SummarizePost.svelte';
-    import IterableItem from '$lib/components/fragment/IterableItem.svelte';
+    import Introduction from '$lib/components/Introduction.svelte';
+    import SummarizePost from '$lib/components/post/SummarizePost.svelte';
+    import IterableItem from '$lib/components/IterableItem.svelte';
     import SEO from '$lib/components/SEO.svelte';
 
     const { data } = $props();
@@ -19,7 +19,7 @@
 <SEO title="홈" description="홈" />
 
 <div class="max-w-content mx-1 md:mx-auto">
-    <AvatarIntroduce />
+    <Introduction />
     <div class="divider text-base-content/60 text-sm">최근 게시글</div>
     <IterableItem parent="ul" class="list" items={posts} {itemSnippet} itemIdentifier="slug">
         <a

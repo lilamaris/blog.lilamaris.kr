@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { HTMLAttributes } from 'svelte/elements';
-    import IterableItem from '$lib/components/fragment/IterableItem.svelte';
+    import IterableItem from '$lib/components/IterableItem.svelte';
 
     interface QueryOption {
         prefix: string;

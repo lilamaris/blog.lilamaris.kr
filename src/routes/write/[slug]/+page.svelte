@@ -1,7 +1,7 @@
 <script lang="ts">
-    import PostAbstract from '$lib/components/write/PostAbstract.svelte';
-    import TableOfContent from '$lib/components/write/TableOfContent.svelte';
     import SEO from '$lib/components/SEO.svelte';
+    import PostAbstract from './PostAbstract.svelte';
+    import TableOfContent from './TableOfContent.svelte';
 
     const { data } = $props();
     const { metadata, html, toc } = data;

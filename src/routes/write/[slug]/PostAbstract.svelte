@@ -1,8 +1,9 @@
 <script lang="ts">
-    import CategoryList from '$lib/components/fragment/CategoryList.svelte';
     import { Route } from '$lib/config/general';
     import type { Post } from '$lib/types/post';
     import { formatDate } from '$lib/util';
+
+    import CategoryList from '$lib/components/post/CategoryList.svelte';
 
     interface Props {
         post: Post;

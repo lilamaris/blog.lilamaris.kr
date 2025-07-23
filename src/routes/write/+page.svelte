@@ -1,6 +1,7 @@
 <script lang="ts">
-    import IterableItem from '$lib/components/fragment/IterableItem.svelte';
-    import SummarizePost from '$lib/components/fragment/SummarizePost.svelte';
+    import IterableItem from '$lib/components/IterableItem.svelte';
+    import SummarizePost from '$lib/components/post/SummarizePost.svelte';
+
     import { type Post } from '$lib/types/post.js';
 
     let { data } = $props();

@@ -1,7 +1,8 @@
 <script lang="ts">
     import { Github, type IconNode } from '@lucide/svelte';
-    import IconButton from '$lib/components/fragment/IconButton.svelte';
-    import IterableItem from '$lib/components/fragment/IterableItem.svelte';
+    import IconButton from './IconButton.svelte';
+    import IterableItem from './IterableItem.svelte';
+
     import { context } from '$lib/config/general';
 
     const XIcon: IconNode = [

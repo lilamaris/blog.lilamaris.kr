@@ -2,8 +2,8 @@
     import { blur } from 'svelte/transition';
     import { context } from '$lib/config/general';
     import { scrollTracker } from '$lib/action/scrollTracker';
-    import Header from '$lib/components/home/Header.svelte';
-    import Footer from '$lib/components/home/Footer.svelte';
+    import Header from '$lib/components/header';
+    import Footer from '$lib/components/Footer.svelte';
     import '../app.css';
 
     const { data, children } = $props();

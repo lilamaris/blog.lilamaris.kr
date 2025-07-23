@@ -1,7 +1,6 @@
 <script lang="ts" generics="T,I extends keyof T">
     import type { Snippet } from 'svelte';
     import type { HTMLAttributes } from 'svelte/elements';
-    type Item = T[I] extends string | number ? T : never;
 
     interface PropBase extends HTMLAttributes<HTMLElement> {
         parent?: string;

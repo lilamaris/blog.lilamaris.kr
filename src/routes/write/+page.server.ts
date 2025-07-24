@@ -1,12 +1,10 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import type { Post } from '$lib/types/post';
+import { readPostMetadata } from '$lib/server/posts';
 
-export const load: PageServerLoad = async ({ fetch }) => {
+export const load: PageServerLoad = async () => {
   try {
-    const rawPosts = await fetch('/api/write');
-    if (!rawPosts.ok) throw new Error('Could not fetch posts...');
-    const posts: Post[] = await rawPosts.json();
+    const posts = await readPostMetadata();
     return { posts };
   } catch (e) {
     error(404, (e as Error).message);

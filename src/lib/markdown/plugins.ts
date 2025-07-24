@@ -2,12 +2,6 @@ import type { Element, Properties, Root } from 'hast';
 import { visit } from 'unist-util-visit';
 import type { VFile } from 'vfile';
 
-export interface TocItem {
-  depth: number;
-  text: string;
-  id: string;
-}
-
 export const rehypeCollectHeadings = (options: { toc: boolean }) => {
   return (tree: Root, file: VFile) => {
     const toc: TocItem[] = [];

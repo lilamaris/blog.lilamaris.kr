@@ -11,7 +11,9 @@ import { context } from '$lib/config';
 import { rehypeCollectHeadings, rehypePlaneText, type TocItem } from './plugins';
 
 const baseProcessor = unified().use(remarkParse);
-export const plainProcessor = baseProcessor.use(rehypePlaneText).use(rehypeStringify);
+export const plainProcessor = baseProcessor
+  .use(rehypePlaneText)
+  .use(rehypeStringify, { allowDangerousHtml: true }); // convert html to string
 export const htmlProcessor = baseProcessor
   .use(remarkRehype, { allowDangerousHtml: true }) // convert abstract syntax tree to html
   .use([rehypeSlug, rehypeAutolinkHeadings, rehypeCollectHeadings])
@@ -50,19 +52,13 @@ const replaceImageAlias = (content: string) => {
   });
 };
 
-export const markdownTo = async (format: 'html' | 'plain', content: string) => {
-  const preprocessResult = replaceImageAlias(content);
+export const markdownTo = async (format: 'html' | 'markdown' | 'plain', rawContent: string) => {
+  const preprocessResult = replaceImageAlias(rawContent);
   const result = await htmlProcessor.process(preprocessResult);
-  const html = result.value.toString();
   const toc = (result.data?.toc as TocItem[]) || [];
-  return { html, toc };
-};
+  let content = rawContent;
+  if (format == 'html') content = result.value.toString();
+  if (format == 'plain') content = (await plainProcessor.process(result)).value.toString();
 
-export const markdownToHtml = async (content: string) => {
-  const processReplaceImageAlias = replaceImageAlias(content);
-  const file = await markdownProcessor.process(processReplaceImageAlias);
-
-  const html = String(file.value);
-  const toc = (file.data?.toc as TocItem[]) || [];
-  return { html, toc };
+  return { content, toc };
 };

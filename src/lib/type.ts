@@ -11,6 +11,13 @@ export interface PostMetadata {
 export interface Post {
   metadata: PostMetadata;
   content: string;
+  toc: TocItem[];
+}
+
+export interface TocItem {
+  depth: number;
+  text: string;
+  id: string;
 }
 
 export const PostMetadataSchema = z.object({
@@ -21,10 +28,18 @@ export const PostMetadataSchema = z.object({
   categories: z.array(z.string())
 });
 
+export const TocItemSchema = z.object({
+  depth: z.number(),
+  text: z.string(),
+  id: z.string()
+});
+
 export const PostSchema = z.object({
   metadata: PostMetadataSchema,
-  content: z.string()
+  content: z.string(),
+  toc: z.array(TocItemSchema)
 });
 
 export type ZT_PostMetadata = z.infer<typeof PostMetadataSchema>;
-export type ZT_POST = z.infer<typeof PostSchema>;
+export type ZT_Post = z.infer<typeof PostSchema>;
+export type ZT_TocItem = z.infer<typeof TocItemSchema>;

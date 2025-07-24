@@ -8,150 +8,150 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @plugin "daisyui/theme" {
-    name: 'light';
-    default: true;
-    prefersdark: false;
-    color-scheme: 'light';
-    --color-base-100: oklch(95.814% 0 0);
-    --color-base-200: oklch(89.107% 0 0);
-    --color-base-300: oklch(82.4% 0 0);
-    --color-base-content: oklch(19.162% 0 0);
-    --color-primary: oklch(40.723% 0.161 17.53);
-    --color-primary-content: oklch(88.144% 0.032 17.53);
-    --color-secondary: oklch(61.676% 0.169 23.865);
-    --color-secondary-content: oklch(12.335% 0.033 23.865);
-    --color-accent: oklch(73.425% 0.094 60.729);
-    --color-accent-content: oklch(14.685% 0.018 60.729);
-    --color-neutral: oklch(54.367% 0.037 51.902);
-    --color-neutral-content: oklch(90.873% 0.007 51.902);
-    --color-info: oklch(69.224% 0.097 207.284);
-    --color-info-content: oklch(13.844% 0.019 207.284);
-    --color-success: oklch(60.995% 0.08 174.616);
-    --color-success-content: oklch(12.199% 0.016 174.616);
-    --color-warning: oklch(70.081% 0.164 56.844);
-    --color-warning-content: oklch(14.016% 0.032 56.844);
-    --color-error: oklch(53.07% 0.241 24.16);
-    --color-error-content: oklch(90.614% 0.048 24.16);
-    --radius-selector: 2rem;
-    --radius-field: 2rem;
-    --radius-box: 0.25rem;
-    --size-selector: 0.25rem;
-    --size-field: 0.25rem;
-    --border: 1px;
-    --depth: 0;
-    --noise: 0;
+  name: 'light';
+  default: true;
+  prefersdark: false;
+  color-scheme: 'light';
+  --color-base-100: oklch(95.814% 0 0);
+  --color-base-200: oklch(89.107% 0 0);
+  --color-base-300: oklch(82.4% 0 0);
+  --color-base-content: oklch(19.162% 0 0);
+  --color-primary: oklch(40.723% 0.161 17.53);
+  --color-primary-content: oklch(88.144% 0.032 17.53);
+  --color-secondary: oklch(61.676% 0.169 23.865);
+  --color-secondary-content: oklch(12.335% 0.033 23.865);
+  --color-accent: oklch(73.425% 0.094 60.729);
+  --color-accent-content: oklch(14.685% 0.018 60.729);
+  --color-neutral: oklch(54.367% 0.037 51.902);
+  --color-neutral-content: oklch(90.873% 0.007 51.902);
+  --color-info: oklch(69.224% 0.097 207.284);
+  --color-info-content: oklch(13.844% 0.019 207.284);
+  --color-success: oklch(60.995% 0.08 174.616);
+  --color-success-content: oklch(12.199% 0.016 174.616);
+  --color-warning: oklch(70.081% 0.164 56.844);
+  --color-warning-content: oklch(14.016% 0.032 56.844);
+  --color-error: oklch(53.07% 0.241 24.16);
+  --color-error-content: oklch(90.614% 0.048 24.16);
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 0.25rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
 }
 
 @plugin "daisyui/theme" {
-    name: 'dark';
-    default: false;
-    prefersdark: false;
-    color-scheme: 'dark';
-    --color-base-100: oklch(14.076% 0.004 285.822);
-    --color-base-200: oklch(20.219% 0.004 308.229);
-    --color-base-300: oklch(23.219% 0.004 308.229);
-    --color-base-content: oklch(75.687% 0.123 76.89);
-    --color-primary: oklch(100% 0 0);
-    --color-primary-content: oklch(20% 0 0);
-    --color-secondary: oklch(27.581% 0.064 261.069);
-    --color-secondary-content: oklch(85.516% 0.012 261.069);
-    --color-accent: oklch(36.674% 0.051 338.825);
-    --color-accent-content: oklch(87.334% 0.01 338.825);
-    --color-neutral: oklch(24.27% 0.057 59.825);
-    --color-neutral-content: oklch(93.203% 0.089 90.861);
-    --color-info: oklch(79.061% 0.121 237.133);
-    --color-info-content: oklch(15.812% 0.024 237.133);
-    --color-success: oklch(78.119% 0.192 132.154);
-    --color-success-content: oklch(15.623% 0.038 132.154);
-    --color-warning: oklch(86.127% 0.136 102.891);
-    --color-warning-content: oklch(17.225% 0.027 102.891);
-    --color-error: oklch(71.753% 0.176 22.568);
-    --color-error-content: oklch(14.35% 0.035 22.568);
-    --radius-selector: 2rem;
-    --radius-field: 2rem;
-    --radius-box: 0.25rem;
-    --size-selector: 0.25rem;
-    --size-field: 0.25rem;
-    --border: 1px;
-    --depth: 0;
-    --noise: 0;
+  name: 'dark';
+  default: false;
+  prefersdark: false;
+  color-scheme: 'dark';
+  --color-base-100: oklch(14.076% 0.004 285.822);
+  --color-base-200: oklch(20.219% 0.004 308.229);
+  --color-base-300: oklch(23.219% 0.004 308.229);
+  --color-base-content: oklch(75.687% 0.123 76.89);
+  --color-primary: oklch(100% 0 0);
+  --color-primary-content: oklch(20% 0 0);
+  --color-secondary: oklch(27.581% 0.064 261.069);
+  --color-secondary-content: oklch(85.516% 0.012 261.069);
+  --color-accent: oklch(36.674% 0.051 338.825);
+  --color-accent-content: oklch(87.334% 0.01 338.825);
+  --color-neutral: oklch(24.27% 0.057 59.825);
+  --color-neutral-content: oklch(93.203% 0.089 90.861);
+  --color-info: oklch(79.061% 0.121 237.133);
+  --color-info-content: oklch(15.812% 0.024 237.133);
+  --color-success: oklch(78.119% 0.192 132.154);
+  --color-success-content: oklch(15.623% 0.038 132.154);
+  --color-warning: oklch(86.127% 0.136 102.891);
+  --color-warning-content: oklch(17.225% 0.027 102.891);
+  --color-error: oklch(71.753% 0.176 22.568);
+  --color-error-content: oklch(14.35% 0.035 22.568);
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 0.25rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
 }
 
 @theme {
-    --font-noto: 'Noto Sans KR', sans-serif;
-    --font-jetbrains: 'JetBrains Mono', monospace;
+  --font-noto: 'Noto Sans KR', sans-serif;
+  --font-jetbrains: 'JetBrains Mono', monospace;
 
-    --container-content: var(--container-3xl);
-    --container-header: calc(var(--spacing) * 24);
+  --container-content: var(--container-3xl);
+  --container-header: calc(var(--spacing) * 24);
 }
 
 @layer base {
-    html,
-    body {
-        @apply font-noto bg-base-100 m-0 min-h-screen p-0 transition-colors;
-    }
+  html,
+  body {
+    @apply font-noto bg-base-100 m-0 min-h-screen p-0 transition-colors;
+  }
 }
 
 @utility prose {
-    @apply prose-h1:text-xl prose-h2:text-lg prose-h3:text-base;
+  @apply prose-h1:text-xl prose-h2:text-lg prose-h3:text-base;
 
-    kbd {
-        @apply kbd;
-    }
+  kbd {
+    @apply kbd;
+  }
 
-    em {
-        @apply bg-base-200 rounded-field px-1 py-px font-mono shadow-sm;
-    }
+  em {
+    @apply bg-base-200 rounded-field px-1 py-px font-mono shadow-sm;
+  }
 
+  pre {
+    @apply bg-base-300;
+  }
+
+  [data-rehype-pretty-code-figure] {
+    figcaption,
     pre {
-        @apply bg-base-300;
+      @apply bg-base-200;
     }
 
-    [data-rehype-pretty-code-figure] {
-        figcaption,
-        pre {
-            @apply bg-base-200;
-        }
-
-        figcaption {
-            @apply rounded-t-field text-base-content/80 border-base-300/80 border-b px-4 py-1 font-mono text-sm italic select-none;
-        }
-        pre {
-            @apply rounded-b-field rounded-none;
-
-            code[data-line-numbers] {
-                counter-reset: line;
-            }
-
-            code[data-line-numbers] > [data-line]::before {
-                counter-increment: line;
-                content: counter(line);
-                @apply text-base-content/50 mr-8 inline-block w-3 text-right;
-            }
-
-            code[data-line-numbers-max-digits='2'] > [data-line]::before {
-                @apply w-4;
-            }
-
-            code[data-line-numbers-max-digits='3'] > [data-line]::before {
-                @apply w-5;
-            }
-
-            code[data-line-numbers-max-digits='4'] > [data-line]::before {
-                @apply w-6;
-            }
-
-            code[data-theme*=' '],
-            code[data-theme*=' '] span {
-                color: var(--shiki-light);
-            }
-
-            @variant dark {
-                code[data-theme*=' '],
-                code[data-theme*=' '] span {
-                    color: var(--shiki-dark);
-                }
-            }
-        }
+    figcaption {
+      @apply rounded-t-field text-base-content/80 border-base-300/80 border-b px-4 py-1 font-mono text-sm italic select-none;
     }
+    pre {
+      @apply rounded-b-field rounded-none;
+
+      code[data-line-numbers] {
+        counter-reset: line;
+      }
+
+      code[data-line-numbers] > [data-line]::before {
+        counter-increment: line;
+        content: counter(line);
+        @apply text-base-content/50 mr-8 inline-block w-3 text-right;
+      }
+
+      code[data-line-numbers-max-digits='2'] > [data-line]::before {
+        @apply w-4;
+      }
+
+      code[data-line-numbers-max-digits='3'] > [data-line]::before {
+        @apply w-5;
+      }
+
+      code[data-line-numbers-max-digits='4'] > [data-line]::before {
+        @apply w-6;
+      }
+
+      code[data-theme*=' '],
+      code[data-theme*=' '] span {
+        color: var(--shiki-light);
+      }
+
+      @variant dark {
+        code[data-theme*=' '],
+        code[data-theme*=' '] span {
+          color: var(--shiki-dark);
+        }
+      }
+    }
+  }
 }

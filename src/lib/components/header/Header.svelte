@@ -1,71 +1,71 @@
 <script lang="ts">
-    import { browser } from '$app/environment';
-    import { goto } from '$app/navigation';
+  import { browser } from '$app/environment';
+  import { goto } from '$app/navigation';
 
-    import { Home, ArrowLeft, Sun, Moon, Send } from '@lucide/svelte';
-    import ThemeController from '../ThemeController.svelte';
-    import SearchBar from './SearchBar.svelte';
+  import { Home, ArrowLeft, Sun, Moon, Send } from '@lucide/svelte';
+  import ThemeController from '../ThemeController.svelte';
+  import SearchBar from './SearchBar.svelte';
 
-    interface Props {
-        isScrolled?: boolean;
+  interface Props {
+    isScrolled?: boolean;
+  }
+
+  let { isScrolled = false }: Props = $props();
+
+  const goToParentRoute = (): void => {
+    if (!browser) return;
+    const path = window.location.pathname;
+    const segments = path.split('/').filter(Boolean);
+    if (segments.length === 0) {
+      goto('/');
+      return;
     }
-
-    let { isScrolled = false }: Props = $props();
-
-    const goToParentRoute = (): void => {
-        if (!browser) return;
-        const path = window.location.pathname;
-        const segments = path.split('/').filter(Boolean);
-        if (segments.length === 0) {
-            goto('/');
-            return;
-        }
-        segments.pop();
-        const parent = '/' + segments.join('/');
-        goto(parent === '' ? '/' : parent);
-    };
+    segments.pop();
+    const parent = '/' + segments.join('/');
+    goto(parent === '' ? '/' : parent);
+  };
 </script>
 
 {#snippet themeController(dark: boolean, onClick: () => void)}
-    <label class="btn btn-square swap swap-rotate tooltip tooltip-bottom" data-tip="테마 변경">
-        <input
-            type="checkbox"
-            class="theme-controller"
-            onclick={onClick}
-            checked={dark}
-            aria-label="테마 변경"
-        />
+  <label class="btn btn-square swap swap-rotate tooltip tooltip-bottom" data-tip="테마 변경">
+    <input
+      type="checkbox"
+      class="theme-controller"
+      onclick={onClick}
+      checked={dark}
+      aria-label="테마 변경"
+    />
 
-        <Sun class="swap-on h-4" />
-        <Moon class="swap-off h-4" />
-    </label>
+    <Sun class="swap-on h-4" />
+    <Moon class="swap-off h-4" />
+  </label>
 {/snippet}
 
 <header
-    class="fixed top-5 left-1/2 z-10 flex max-w-max shrink -translate-x-1/2 justify-between gap-2 p-2 transition-all select-none {isScrolled
-        ? 'bg-base-100/80 rounded-box shadow-md backdrop-blur-md'
-        : 'bg-inherit shadow-none'}"
+  class="fixed top-5 left-1/2 z-10 flex max-w-max shrink -translate-x-1/2 justify-between gap-2 p-2 transition-all select-none {isScrolled
+    ? 'bg-base-100/80 rounded-box shadow-md backdrop-blur-md'
+    : 'bg-inherit shadow-none'}"
 >
-    <a
-        class="btn btn-square tooltip tooltip-base-100 tooltip-bottom"
-        data-tip="홈으로"
-        href="/"
-        aria-label="홈으로"
-    >
-        <Home class="h-4" />
-    </a>
-    <button
-        class="tooltip btn btn-square tooltip-bottom"
-        data-tip="뒤로 가기"
-        aria-label="뒤로 가기"
-        onclick={goToParentRoute}
-    >
-        <ArrowLeft class="h-4" />
-    </button>
-    <SearchBar />
+  <a
+    class="btn btn-square tooltip tooltip-base-100 tooltip-bottom"
+    data-tip="홈으로"
+    href="/"
+    aria-label="홈으로"
+  >
+    <Home class="h-4" />
+  </a>
+  <button
+    class="tooltip btn btn-square tooltip-bottom"
+    data-tip="뒤로 가기"
+    aria-label="뒤로 가기"
+    onclick={goToParentRoute}
+  >
+    <ArrowLeft class="h-4" />
+  </button>
+  <SearchBar />
 
-    <ThemeController controller={themeController} />
-    <button class="btn btn-square tooltip tooltip-bottom" data-tip="공유">
-        <Send class="h-4" />
-    </button>
+  <ThemeController controller={themeController} />
+  <button class="btn btn-square tooltip tooltip-bottom" data-tip="공유">
+    <Send class="h-4" />
+  </button>
 </header>

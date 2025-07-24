@@ -8,47 +8,53 @@ const postBase = path.resolve('posts');
 
 export interface PostReadOption {
   format: 'html' | 'markdown' | 'plain';
+  draft: boolean;
 }
 
-export const readPostFromPath = async (
-  postPath: string,
-  options: PostReadOption = { format: 'markdown' }
-): Promise<Post> => {
-  try {
-    const raw = matter(await fs.readFile(postPath, 'utf-8'));
-    let { content, toc } = await markdownTo(options.format, raw.content);
+const defaultReadOptions: PostReadOption = { format: 'markdown', draft: false };
 
-    const post = PostSchema.safeParse({ metadata: raw.data, content, toc });
-    if (!post.success)
-      throw new Error(`Failed to parse to post format: ${postPath}\nReason: ${post.error.message}`);
-    return post.data;
+export const readRawPost = async (postPath: string): Promise<string> => {
+  try {
+    const raw = await fs.readFile(postPath, 'utf-8');
+    return raw;
   } catch (e) {
     console.error((e as Error).message);
-    throw new Error('Could not read post... Whoops');
+    throw new Error('Could not read markdown file');
   }
 };
 
 export const readPost = async (
   slug: string,
-  options: PostReadOption = { format: 'markdown' }
-): Promise<Post> => {
+  options?: Partial<PostReadOption>
+): Promise<Post | null> => {
+  const opts = { ...defaultReadOptions, ...(options ?? {}) };
+
+  const postPath = path.join(postBase, slug, `${slug}.md`);
   try {
-    const postPath = path.join(postBase, slug, `${slug}.md`);
-    const post = readPostFromPath(postPath, options);
-    return post;
+    const raw = await readRawPost(postPath);
+    const { data: frontmatter, content } = matter(raw);
+    const parsed = await markdownTo(opts.format, content);
+    const validatedPost = PostSchema.safeParse({
+      metadata: frontmatter,
+      content: parsed.content,
+      toc: parsed.toc
+    });
+    if (!validatedPost.success) return null;
+    const post = validatedPost.data;
+
+    return opts.draft !== Boolean(post.metadata.publishedAt) ? post : null;
   } catch (e) {
     console.error((e as Error).message);
-    throw e as Error;
+    throw new Error('Could not read post... Wuuut....');
   }
 };
 
-export const readPosts = async (options: PostReadOption = { format: 'markdown' }) => {
+export const readPosts = async (options?: Partial<PostReadOption>) => {
   try {
     const posts: Post[] = [];
     for (const dir of await fs.readdir(postBase)) {
-      const postPath = path.join(postBase, dir, `${dir}.md`);
-      const post = await readPostFromPath(postPath, options);
-      posts.push(post);
+      const post = await readPost(dir, options);
+      post && posts.push(post);
     }
     return posts;
   } catch (e) {
@@ -56,7 +62,7 @@ export const readPosts = async (options: PostReadOption = { format: 'markdown' }
   }
 };
 
-export const readPostMetadata = async (options: PostReadOption = { format: 'markdown' }) => {
+export const readPostMetadata = async (options?: Partial<PostReadOption>) => {
   try {
     const metadatas: PostMetadata[] = (await readPosts(options)).map((post) => post.metadata);
     return metadatas;

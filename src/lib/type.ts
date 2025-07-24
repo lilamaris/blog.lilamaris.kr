@@ -4,7 +4,7 @@ export interface PostMetadata {
   title: string;
   description: string;
   slug: string;
-  publishedAt: Date;
+  publishedAt: Date | null;
   categories: string[];
 }
 
@@ -24,7 +24,7 @@ export const PostMetadataSchema = z.object({
   title: z.string(),
   description: z.string(),
   slug: z.string(),
-  publishedAt: z.coerce.date(),
+  publishedAt: z.coerce.date().nullable(),
   categories: z.array(z.string())
 });
 

@@ -8,6 +8,7 @@
   import '../app.css';
 
   const { data, children } = $props();
+  let isScrolled = $state(false);
 </script>
 
 <svelte:head>
@@ -15,9 +16,10 @@
   <meta name="description" content={context.description} />
 </svelte:head>
 
+<svelte:window onscroll={() => (isScrolled = window.scrollY > 0)} />
 <div class="flex min-h-screen flex-col">
   <div class="basis-header">
-    <Header />
+    <Header {isScrolled} />
   </div>
   {#key data.url}
     <main class="flex-1" in:blur={{ duration: 150 }}>

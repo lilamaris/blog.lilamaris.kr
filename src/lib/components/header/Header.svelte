@@ -27,10 +27,13 @@
 </script>
 
 {#snippet themeController(dark: boolean, onClick: () => void)}
-  <label class="btn btn-square swap swap-rotate tooltip tooltip-bottom" data-tip="테마 변경">
+  <label
+    class={`btn btn-square swap swap-rotate tooltip tooltip-base-100 tooltip-bottom focus-within:outline-2 ${isScrolled ? 'bg-base-100' : 'bg-base-300'}`}
+    data-tip="테마 변경"
+  >
     <input
       type="checkbox"
-      class="theme-controller"
+      class="theme-controller outline-0"
       onclick={onClick}
       checked={dark}
       aria-label="테마 변경"
@@ -42,12 +45,12 @@
 {/snippet}
 
 <header
-  class="fixed top-5 left-1/2 z-10 flex max-w-max shrink -translate-x-1/2 justify-between gap-2 p-2 transition-all select-none {isScrolled
-    ? 'bg-base-100/80 rounded-box shadow-md backdrop-blur-md'
+  class="rounded-field fixed top-5 left-1/2 z-10 flex max-w-max shrink -translate-x-1/2 justify-between gap-2 p-2 transition-all select-none {isScrolled
+    ? 'bg-base-300/60  shadow-md backdrop-blur-lg'
     : 'bg-inherit shadow-none'}"
 >
   <a
-    class="btn btn-square tooltip tooltip-base-100 tooltip-bottom"
+    class={`btn btn-square tooltip tooltip-base-100 tooltip-bottom ${isScrolled ? 'bg-base-100' : 'bg-base-300'}`}
     data-tip="홈으로"
     href="/"
     aria-label="홈으로"
@@ -55,7 +58,7 @@
     <Home class="h-4" />
   </a>
   <button
-    class="tooltip btn btn-square tooltip-bottom"
+    class={`btn btn-square tooltip tooltip-base-100 tooltip-bottom ${isScrolled ? 'bg-base-100' : 'bg-base-300'}`}
     data-tip="뒤로 가기"
     aria-label="뒤로 가기"
     onclick={goToParentRoute}
@@ -65,7 +68,10 @@
   <SearchBar />
 
   <ThemeController controller={themeController} />
-  <button class="btn btn-square tooltip tooltip-bottom" data-tip="공유">
+  <button
+    class={`btn btn-square tooltip tooltip-base-100 tooltip-bottom ${isScrolled ? 'bg-base-100' : 'bg-base-300'}`}
+    data-tip="공유"
+  >
     <Send class="h-4" />
   </button>
 </header>

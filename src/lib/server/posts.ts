@@ -17,7 +17,6 @@ export const readPostFromPath = async (
   try {
     const raw = matter(await fs.readFile(postPath, 'utf-8'));
     let { content, toc } = await markdownTo(options.format, raw.content);
-    console.log(`Parse content to ${options.format}`, content);
 
     const post = PostSchema.safeParse({ metadata: raw.data, content, toc });
     if (!post.success)

@@ -1,10 +1,10 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-import { readPosts } from '$lib/server/posts';
+import { searchByKeyword } from '$lib/server/search';
 
-export const GET: RequestHandler = ({ url }) => {
-  const keyword = url.searchParams.get('keyword');
-  const posts = readPosts();
-  return json([]);
+export const GET: RequestHandler = async ({ url }) => {
+  const keyword = url.searchParams.get('keyword') ?? '';
+  const searchResult = await searchByKeyword(keyword);
+  return json(searchResult);
 };

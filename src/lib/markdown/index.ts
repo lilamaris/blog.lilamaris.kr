@@ -8,11 +8,13 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import { transformerCopyButton } from '@rehype-pretty/transformers';
 
 import { context } from '$lib/config';
-import { rehypeCollectHeadings, rehypePlaneText, type TocItem } from './plugins';
+import { rehypeCollectHeadings, rehypePlainText } from './plugins';
+import type { TocItem } from '$lib/type';
 
 const baseProcessor = unified().use(remarkParse);
 export const plainProcessor = baseProcessor
-  .use(rehypePlaneText)
+  .use(remarkRehype, { allowDangerousHtml: true }) // convert abstract syntax tree to html
+  .use(rehypePlainText)
   .use(rehypeStringify, { allowDangerousHtml: true }); // convert html to string
 export const htmlProcessor = baseProcessor
   .use(remarkRehype, { allowDangerousHtml: true }) // convert abstract syntax tree to html
@@ -58,7 +60,10 @@ export const markdownTo = async (format: 'html' | 'markdown' | 'plain', rawConte
   const toc = (result.data?.toc as TocItem[]) || [];
   let content = rawContent;
   if (format == 'html') content = result.value.toString();
-  if (format == 'plain') content = (await plainProcessor.process(result)).value.toString();
+  if (format == 'plain') {
+    const { data } = await plainProcessor.process(rawContent);
+    content = (data.plainText as string) ?? '';
+  }
 
   return { content, toc };
 };

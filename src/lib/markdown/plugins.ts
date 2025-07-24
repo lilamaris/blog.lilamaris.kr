@@ -1,3 +1,4 @@
+import type { TocItem } from '$lib/type';
 import type { Element, Properties, Root } from 'hast';
 import { visit } from 'unist-util-visit';
 import type { VFile } from 'vfile';
@@ -32,7 +33,7 @@ export const rehypeCollectHeadings = (options: { toc: boolean }) => {
   };
 };
 
-export const rehypePlaneText = (options: { seperator: string } = { seperator: '' }) => {
+export const rehypePlainText = (options: { seperator: string } = { seperator: '' }) => {
   return (tree: Root, file: VFile) => {
     const parts: string[] = [];
     const visitor = (node: Element) => {
@@ -40,6 +41,6 @@ export const rehypePlaneText = (options: { seperator: string } = { seperator: ''
     };
     visit(tree, 'text', visitor);
     file.data = file.data || {};
-    file.data.planeText = parts.join(options.seperator);
+    file.data.plainText = parts.join(options.seperator);
   };
 };

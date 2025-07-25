@@ -3,6 +3,7 @@
 </script>
 
 <div>Oh no.. What happened!?</div>
-<a href="/" class="hover:bg-accent rounded-md underline decoration-solid decoration-1"
-  >Back to home</a
->
+<a href="/" class="btn hover:bg-accent rounded-md underline decoration-solid decoration-1">
+  Back to home
+</a>
+

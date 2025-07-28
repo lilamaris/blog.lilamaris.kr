@@ -6,5 +6,4 @@ SvelteKit 마크다운 블로그. [이 링크](https://blog.lilamaris.kr)를 통
 
 - **프레임워크**: SvelteKit
 - **언어**: TypeScript
-- **데이터베이스 & ORM**: PostgreSQL, Prisma ORM
 - **스타일링**: TailwindCSS, DaisyUI
